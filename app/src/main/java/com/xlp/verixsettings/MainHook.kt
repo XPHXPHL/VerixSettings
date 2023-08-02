@@ -2,6 +2,7 @@ package com.xlp.verixsettings
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.PowerManager
 import android.os.VibrationEffect
 import android.os.Vibrator
 import com.xlp.verixsettings.utils.Init.TAG
@@ -11,6 +12,7 @@ import com.xlp.verixsettings.utils.PrefsMap
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.IXposedHookZygoteInit
 import de.robv.android.xposed.XC_MethodHook
+import de.robv.android.xposed.XC_MethodReplacement
 import de.robv.android.xposed.XSharedPreferences
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
@@ -60,19 +62,39 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
                 hookBlur(targetClass2)
                 hookBlur(targetClass3)
             }
-            if (mPrefsMap.getBoolean("vibrator_enabled")) {
-                if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking Vibrator")
-                val targetClass4 = XposedHelpers.findClass(
+
+            if (mPrefsMap.getBoolean("face_vibrator")) {
+                if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking face unlocked successfully vibrate")
+                val targetClass = XposedHelpers.findClass(
                     "com.android.keyguard.KeyguardUpdateMonitor",
                     lpparam.classLoader
                 )
-                val targetClass5 = XposedHelpers.findClass(
-                    "com.flyme.systemui.navigationbar.gestural.EdgeBackView",
+                hookFaceVib(targetClass)
+            }
+
+            if (mPrefsMap.getBoolean("finger_vibrator")) {
+                val targetClass = XposedHelpers.findClass(
+                    "com.android.keyguard.KeyguardUpdateMonitor",
                     lpparam.classLoader
                 )
-                hookFingerVib(targetClass4)
-                hookFaceVib(targetClass4)
-                hookBackVib(targetClass5)
+                hookFingerVib(targetClass)
+            }
+
+            if (mPrefsMap.getBoolean("back_vibrator")){
+            val targetClass = XposedHelpers.findClass(
+                "com.flyme.systemui.navigationbar.gestural.EdgeBackView",
+                lpparam.classLoader
+            )
+                hookBackVib(targetClass)
+            }
+
+            if (mPrefsMap.getBoolean("finger_unlock")){
+                if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking Finger_unlock is")
+                val targetClass = XposedHelpers.findClass(
+                    "com.android.keyguard.KeyguardUpdateMonitor",
+                    lpparam.classLoader
+                )
+                hookFingerUnlock(targetClass)
             }
         }
     }
@@ -142,5 +164,24 @@ private fun hookBackVib(clazz: Class<*>) {
                 mVibrator.vibrate(VibrationEffect.createPredefined(31021))
             }
         }
+    )
+}
+private fun hookFingerUnlock(clazz: Class<*>){
+    XposedHelpers.findAndHookMethod(
+        clazz,
+        "isFingerprintDisabled",
+        Int::class.java,
+        object : XC_MethodHook(){
+            @Suppress("DEPRECATION")
+            @SuppressLint("WrongConstant")
+            override fun beforeHookedMethod(param: MethodHookParam?) {
+                super.beforeHookedMethod(param)
+                val mContext = XposedHelpers.getObjectField(param?.thisObject, "mContext") as Context
+                val mPowerManager = mContext.getSystemService("power") as PowerManager
+                param?.result = !(mPowerManager.isScreenOn())
+
+            }
+        }
+
     )
 }
