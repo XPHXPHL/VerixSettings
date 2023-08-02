@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:androidprv="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory>
-
+        <PreferenceCategory androidprv:title="UI界面专区"/>
         <SwitchPreference
             android:defaultValue="false"
             android:key="blur_enabled"
-            android:title="启用模糊" />
+            android:title="恢复通知模糊"
+            android:summary="为非魅族20/20Pro用户恢复被阉割掉通知中心模糊"/>
 
+        <PreferenceCategory androidprv:title="震动专区"/>
         <SwitchPreference
             android:defaultValue="false"
-            android:key="vibrator_enabled"
-            android:title="启用震感" />
+            android:key="face_vibrator"
+            android:title="启用人脸验证成功震动" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="finger_vibrator"
+            android:title="启用指纹验证成功震动" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="back_vibrator"
+            android:title="启用返回震动" />
 
+        <PreferenceCategory androidprv:title="充电专区"/>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="hs_power"
+            android:title="H.S充电"
+            android:summary="旁路冲电"/>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="battery_protect"
+            android:title="电池保护"
+            android:summary="114514"/>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="auto_off_hs_power"
+            android:title="自动关闭H.S充电"
+            android:summary="旁路冲电"/>
+
+        <PreferenceCategory androidprv:title="指纹专区"/>
+        <SwitchPreference
+        android:defaultValue="false"
+        android:key="finger_unlock"
+        android:title="按压指纹按键解锁"
+        android:summary=""/>
     </PreferenceCategory>
 
 </PreferenceScreen>
