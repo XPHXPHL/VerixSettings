@@ -4,5 +4,6 @@
         <item>com.android.systemui</item>
         <item>android</item>
         <item>com.flyme.systemuiex</item>
+        <item>com.android.settings</item>
     </string-array>
 </resources>
