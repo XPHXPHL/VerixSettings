@@ -19,3 +19,11 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class com.xlp.verixsettings.MainHook {
+    <init>();
+}
+
+-assumenosideeffects class kotlin.jvm.internal.Intrinsics {
+    public static void check*(...);
+    public static void throw*(...);
+}

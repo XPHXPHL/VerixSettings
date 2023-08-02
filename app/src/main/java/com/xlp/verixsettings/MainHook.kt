@@ -4,42 +4,76 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.VibrationEffect
 import android.os.Vibrator
+import com.xlp.verixsettings.utils.Init.TAG
+import com.xlp.verixsettings.utils.PrefsHelpers.mAppModulePkg
+import com.xlp.verixsettings.utils.PrefsHelpers.mPrefsName
+import com.xlp.verixsettings.utils.PrefsMap
 import de.robv.android.xposed.IXposedHookLoadPackage
+import de.robv.android.xposed.IXposedHookZygoteInit
 import de.robv.android.xposed.XC_MethodHook
+import de.robv.android.xposed.XSharedPreferences
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
 import de.robv.android.xposed.callbacks.XC_LoadPackage
 
-class MainHook : IXposedHookLoadPackage {
+var mPrefsMap = PrefsMap<String, Any>()
+
+class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
+    override fun initZygote(startupParam: IXposedHookZygoteInit.StartupParam) {
+        if (mPrefsMap.size == 0) {
+            var mXSharedPreferences: XSharedPreferences? = null
+            try {
+                mXSharedPreferences = XSharedPreferences(mAppModulePkg, mPrefsName)
+                mXSharedPreferences.makeWorldReadable()
+            } catch (t: Throwable) {
+                XposedBridge.log(t)
+            }
+            val allPrefs = mXSharedPreferences!!.all
+            if (allPrefs == null || allPrefs.isEmpty()) {
+                if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Cannot read module's SharedPreferences, some mods might not work!")
+            } else {
+                mPrefsMap.putAll(allPrefs)
+            }
+        }
+    }
+
     override fun handleLoadPackage(lpparam: XC_LoadPackage.LoadPackageParam) {
+
+
         if (lpparam.packageName == "com.android.systemui") {
-            XposedBridge.log("Hooking target app: ${lpparam.packageName}")
-            val targetClass = XposedHelpers.findClass(
-                "com.android.systemui.statusbar.notification.row.ActivatableNotificationView",
-                lpparam.classLoader
-            )
-            val targetClass2 = XposedHelpers.findClass(
-                "com.android.systemui.statusbar.notification.stack.NotificationStackScrollLayout",
-                lpparam.classLoader
-            )
-            val targetClass3 = XposedHelpers.findClass(
-                "com.android.systemui.media.MediaCarouseTransitionLayout",
-                lpparam.classLoader
-            )
-            val targetClass4 = XposedHelpers.findClass(
-                "com.android.keyguard.KeyguardUpdateMonitor",
-                lpparam.classLoader
-            )
-            val targetClass5 = XposedHelpers.findClass(
-                "com.flyme.systemui.navigationbar.gestural.EdgeBackView",
-                lpparam.classLoader
-            )
-            hookBlur(targetClass)
-            hookBlur(targetClass2)
-            hookBlur(targetClass3)
-            hookFingerVib(targetClass4)
-            hookFaceVib(targetClass4)
-            hookBackVib(targetClass5)
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking target app: ${lpparam.packageName}")
+            if (mPrefsMap.getBoolean("blur_enabled")) {
+                if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking Blur")
+                val targetClass = XposedHelpers.findClass(
+                    "com.android.systemui.statusbar.notification.row.ActivatableNotificationView",
+                    lpparam.classLoader
+                )
+                val targetClass2 = XposedHelpers.findClass(
+                    "com.android.systemui.statusbar.notification.stack.NotificationStackScrollLayout",
+                    lpparam.classLoader
+                )
+                val targetClass3 = XposedHelpers.findClass(
+                    "com.android.systemui.media.MediaCarouseTransitionLayout",
+                    lpparam.classLoader
+                )
+                hookBlur(targetClass)
+                hookBlur(targetClass2)
+                hookBlur(targetClass3)
+            }
+            if (mPrefsMap.getBoolean("vibrator_enabled")) {
+                if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking Vibrator")
+                val targetClass4 = XposedHelpers.findClass(
+                    "com.android.keyguard.KeyguardUpdateMonitor",
+                    lpparam.classLoader
+                )
+                val targetClass5 = XposedHelpers.findClass(
+                    "com.flyme.systemui.navigationbar.gestural.EdgeBackView",
+                    lpparam.classLoader
+                )
+                hookFingerVib(targetClass4)
+                hookFaceVib(targetClass4)
+                hookBackVib(targetClass5)
+            }
         }
     }
 }

@@ -1,27 +1,27 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
+@file:Suppress("UnstableApiUsage")
+
+import com.android.build.gradle.internal.api.BaseVariantOutputImpl
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
 }
 
 android {
-    namespace = "com.xlp.verixsettings"
     compileSdk = 33
-
+    namespace = "com.xlp.verixsettings"
     defaultConfig {
-        applicationId = "com.xlp.verixsettings"
+        applicationId = namespace
         minSdk = 33
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
     }
     buildFeatures {
-        compose = true
+        buildConfig = true
     }
 
     composeOptions {
@@ -29,7 +29,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildTypes {
         release {
@@ -41,44 +41,36 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
-    buildFeatures {
-        compose = true
+    androidResources {
+        additionalParameters += arrayOf("--allow-reserved-package-id", "--package-id", "0x78")
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
     }
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "**"
+        }
+        dex {
+            useLegacyPackaging = true
+        }
+        applicationVariants.all {
+            outputs.all {
+                (this as BaseVariantOutputImpl).outputFileName = "VerixSettings-$versionName($versionCode)-$name.apk"
+            }
         }
     }
 }
 
 dependencies {
-    implementation(libs.material)
-    compileOnly("de.robv.android.xposed:api:82")
-    implementation("androidx.compose.material3:material3:1.0.1")
-    implementation("androidx.compose.material3:material3-window-size-class:1.0.1")
+    compileOnly(libs.xposed.api)
     implementation(libs.core.ktx)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.activity.compose)
-    implementation(platform(libs.compose.bom))
-    implementation(libs.ui)
-    implementation(libs.ui.graphics)
-    implementation(libs.ui.tooling.preview)
-    implementation(libs.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(platform(libs.compose.bom))
-    androidTestImplementation(libs.ui.test.junit4)
-    debugImplementation(libs.ui.tooling)
-    debugImplementation(libs.ui.test.manifest)
+    implementation(libs.preference)
 }
 
