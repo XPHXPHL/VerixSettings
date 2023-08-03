@@ -2,4 +2,33 @@
     <string name="app_name">VerixSettings</string>
     <string name="description">Flyme 高级设置</string>
 
+    <string name="blur_enabled">通知模糊</string>
+    <string name="blur_enabled_summary">为非魅族20/20Pro用户恢复被阉割掉通知中心模糊。</string>
+
+
+    <string name="Vibrator">震动专区</string>
+    <string name="Ui">Ui界面专区</string>
+    <string name="Charge">充电设定</string>
+    <string name="Fingerprint">指纹专区</string>
+
+    <string name="back_vibrator">返回震动</string>
+    <string name="back_vibrator_summary">执行返回手势触发线性震动反馈。</string>
+
+    <string name="face_vibrator">人脸解锁成功震动</string>
+    <string name="face_vibrator_summary">人脸解锁成功时触发线性震动反馈。</string>
+
+    <string name="finger_vibrator">指纹解锁成功震动</string>
+    <string name="finger_vibrator_summary">指纹解锁成功时触发线性震动反馈。</string>
+
+    <string name="cipher_disk_vibrator">魅族密码盘震动</string>
+    <string name="cipher_disk_vibrator_summary">为魅族设置密码盘启用震动效果。</string>
+
+    <string name="finger_unlock">按压指纹按键解锁</string>
+    <string name="finger_unlock_summary">类似于MIUI按压指纹按键才能进行解锁。</string>
+
+    <string name="hs_power">H.S.电量控制（旁路充电）</string>
+    <string name="hs_power_summary">可限制由于充电过程中设备过热导致的性能降低和电池降级，电量会直接供给手机系统，而不是给电池充电。这样可减少热应力，有助于保持游戏性能和延长电池的寿命。</string>
+
+    <string name="battery_protect">电池保养</string>
+    <string name="battery_protect_summary">阻止设备充电至90%以上电量，延长电池充放电循环的时间以延长电池寿命。</string>
 </resources>

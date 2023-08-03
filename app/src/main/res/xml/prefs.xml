@@ -1,56 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:androidprv="http://schemas.android.com/apk/res-auto">
-
     <PreferenceCategory>
-        <PreferenceCategory androidprv:title="UI界面专区" />
+        <PreferenceCategory androidprv:title="@string/Ui"/>
         <SwitchPreference
             android:defaultValue="false"
             android:key="blur_enabled"
-            android:summary="为非魅族20/20Pro用户恢复被阉割掉通知中心模糊"
-            android:title="恢复通知模糊" />
-
-        <PreferenceCategory androidprv:title="震动专区" />
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="face_vibrator"
-            android:title="启用人脸验证成功震动" />
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="finger_vibrator"
-            android:title="启用指纹验证成功震动" />
+            android:summary="@string/blur_enabled_summary"
+            android:title="@string/blur_enabled" />
+        <PreferenceCategory androidprv:title="@string/Vibrator" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="back_vibrator"
-            android:title="启用返回震动" />
+            android:summary="@string/back_vibrator_summary"
+            android:title="@string/back_vibrator" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="cipher_disk_vibrator"
-            android:title="启用魅族设置密码盘震动" />
-
-        <PreferenceCategory androidprv:title="充电专区" />
+            android:summary="@string/cipher_disk_vibrator_summary"
+            android:title="@string/cipher_disk_vibrator" />
         <SwitchPreference
             android:defaultValue="false"
-            android:key="hs_power"
-            android:summary="旁路冲电"
-            android:title="H.S 充电" />
+            android:key="face_vibrator"
+            android:summary="@string/face_vibrator_summary"
+            android:title="@string/face_vibrator" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="finger_vibrator"
+            android:summary="@string/finger_vibrator_summary"
+            android:title="@string/finger_vibrator" />
+        <PreferenceCategory androidprv:title="@string/Charge" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="battery_protect"
-            android:summary="114514"
-            android:title="电池保护" />
+            android:summary="@string/battery_protect_summary"
+            android:title="@string/battery_protect" />
         <SwitchPreference
             android:defaultValue="false"
-            android:key="auto_off_hs_power"
-            android:summary="旁路冲电"
-            android:title="自动关闭 H.S 充电" />
-
-        <PreferenceCategory androidprv:title="指纹专区" />
+            android:key="hs_power"
+            android:summary="@string/hs_power_summary"
+            android:title="@string/hs_power" />
+        <PreferenceCategory androidprv:title="@string/Fingerprint" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="finger_unlock"
-            android:summary=""
-            android:title="按压指纹按键解锁" />
+            android:summary="@string/finger_unlock_summary"
+            android:title="@string/finger_unlock" />
     </PreferenceCategory>
-
 </PreferenceScreen>
