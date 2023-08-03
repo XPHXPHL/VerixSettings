@@ -9,6 +9,7 @@ import com.xlp.verixsettings.utils.Init.TAG
 import com.xlp.verixsettings.utils.PrefsHelpers.mAppModulePkg
 import com.xlp.verixsettings.utils.PrefsHelpers.mPrefsName
 import com.xlp.verixsettings.utils.PrefsMap
+import com.xlp.verixsettings.utils.execShell
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.IXposedHookZygoteInit
 import de.robv.android.xposed.XC_MethodHook
@@ -86,99 +87,129 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
             }
 
             if (mPrefsMap.getBoolean("finger_unlock")) {
-                if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking Finger_unlock is")
                 val targetClass = XposedHelpers.findClass(
                     "com.android.keyguard.KeyguardUpdateMonitor",
                     lpparam.classLoader
                 )
                 hookFingerUnlock(targetClass)
             }
+            if (mPrefsMap.getBoolean("battery_protect")) {
+                val targetClass = XposedHelpers.findClass(
+                    "com.android.flyme.statusbar.battery.FlymeBatteryMeterView",
+                    lpparam.classLoader
+                )
+                hookBatteryProtect(targetClass)
+            }
         }
     }
-}
 
-private fun hookBlur(clazz: Class<*>) {
-    XposedHelpers.findAndHookMethod(
-        clazz,
-        "isSupportBlur",
-        object : XC_MethodHook() {
-            override fun beforeHookedMethod(param: MethodHookParam) {
-                super.beforeHookedMethod(param)
-                param.result = true
+    private fun hookBlur(clazz: Class<*>) {
+        XposedHelpers.findAndHookMethod(
+            clazz,
+            "isSupportBlur",
+            object : XC_MethodHook() {
+                override fun beforeHookedMethod(param: MethodHookParam) {
+                    super.beforeHookedMethod(param)
+                    param.result = true
+                }
             }
-        }
-    )
-}
+        )
+    }
 
-private fun hookFingerVib(clazz: Class<*>) {
-    XposedHelpers.findAndHookMethod(
-        clazz,
-        "onFingerprintAuthenticated",
-        Int::class.java,
-        Boolean::class.java,
-        object : XC_MethodHook() {
-            @SuppressLint("WrongConstant")
-            override fun afterHookedMethod(param: MethodHookParam?) {
-                super.afterHookedMethod(param)
-                val mContext =
-                    XposedHelpers.getObjectField(param?.thisObject, "mContext") as Context
-                val mVibrator = mContext.getSystemService("vibrator") as Vibrator
-                mVibrator.vibrate(VibrationEffect.createPredefined(31021))
+    private fun hookFingerVib(clazz: Class<*>) {
+        XposedHelpers.findAndHookMethod(
+            clazz,
+            "onFingerprintAuthenticated",
+            Int::class.java,
+            Boolean::class.java,
+            object : XC_MethodHook() {
+                @SuppressLint("WrongConstant")
+                override fun afterHookedMethod(param: MethodHookParam?) {
+                    super.afterHookedMethod(param)
+                    val mContext =
+                        XposedHelpers.getObjectField(param?.thisObject, "mContext") as Context
+                    val mVibrator = mContext.getSystemService("vibrator") as Vibrator
+                    mVibrator.vibrate(VibrationEffect.createPredefined(31021))
+                }
             }
-        }
-    )
-}
+        )
+    }
 
-private fun hookFaceVib(clazz: Class<*>) {
-    XposedHelpers.findAndHookMethod(
-        clazz,
-        "onFaceRecognitionSucceeded",
-        Boolean::class.java,
-        object : XC_MethodHook() {
-            @SuppressLint("WrongConstant")
-            override fun afterHookedMethod(param: MethodHookParam?) {
-                super.afterHookedMethod(param)
-                val mContext =
-                    XposedHelpers.getObjectField(param?.thisObject, "mContext") as Context
-                val mVibrator = mContext.getSystemService("vibrator") as Vibrator
-                mVibrator.vibrate(VibrationEffect.createPredefined(31021))
+    private fun hookFaceVib(clazz: Class<*>) {
+        XposedHelpers.findAndHookMethod(
+            clazz,
+            "onFaceRecognitionSucceeded",
+            Boolean::class.java,
+            object : XC_MethodHook() {
+                @SuppressLint("WrongConstant")
+                override fun afterHookedMethod(param: MethodHookParam?) {
+                    super.afterHookedMethod(param)
+                    val mContext =
+                        XposedHelpers.getObjectField(param?.thisObject, "mContext") as Context
+                    val mVibrator = mContext.getSystemService("vibrator") as Vibrator
+                    mVibrator.vibrate(VibrationEffect.createPredefined(31021))
+                }
             }
-        }
-    )
-}
+        )
+    }
 
-private fun hookBackVib(clazz: Class<*>) {
-    XposedHelpers.findAndHookMethod(
-        clazz,
-        "triggerBack",
-        object : XC_MethodHook() {
-            @SuppressLint("WrongConstant")
-            override fun afterHookedMethod(param: MethodHookParam?) {
-                super.afterHookedMethod(param)
-                val mContext =
-                    XposedHelpers.getObjectField(param?.thisObject, "mContext") as Context
-                val mVibrator = mContext.getSystemService("vibrator") as Vibrator
-                mVibrator.vibrate(VibrationEffect.createPredefined(31021))
+    private fun hookBackVib(clazz: Class<*>) {
+        XposedHelpers.findAndHookMethod(
+            clazz,
+            "triggerBack",
+            object : XC_MethodHook() {
+                @SuppressLint("WrongConstant")
+                override fun afterHookedMethod(param: MethodHookParam?) {
+                    super.afterHookedMethod(param)
+                    val mContext =
+                        XposedHelpers.getObjectField(param?.thisObject, "mContext") as Context
+                    val mVibrator = mContext.getSystemService("vibrator") as Vibrator
+                    mVibrator.vibrate(VibrationEffect.createPredefined(31021))
+                }
             }
-        }
-    )
-}
+        )
+    }
 
-private fun hookFingerUnlock(clazz: Class<*>) {
-    XposedHelpers.findAndHookMethod(
-        clazz,
-        "isFingerprintDisabled",
-        Int::class.java,
-        object : XC_MethodHook() {
-            @Suppress("DEPRECATION")
-            @SuppressLint("WrongConstant")
-            override fun beforeHookedMethod(param: MethodHookParam?) {
-                super.beforeHookedMethod(param)
-                val mContext = XposedHelpers.getObjectField(param?.thisObject, "mContext") as Context
-                val mPowerManager = mContext.getSystemService("power") as PowerManager
-                param?.result = !(mPowerManager.isScreenOn)
+    private fun hookFingerUnlock(clazz: Class<*>) {
+        XposedHelpers.findAndHookMethod(
+            clazz,
+            "isFingerprintDisabled",
+            Int::class.java,
+            object : XC_MethodHook() {
+                @Suppress("DEPRECATION")
+                @SuppressLint("WrongConstant")
+                override fun beforeHookedMethod(param: MethodHookParam?) {
+                    super.beforeHookedMethod(param)
+                    val mContext =
+                        XposedHelpers.getObjectField(param?.thisObject, "mContext") as Context
+                    val mPowerManager = mContext.getSystemService("power") as PowerManager
+                    param?.result = !(mPowerManager.isScreenOn)
+                }
             }
-        }
 
-    )
+        )
+    }
+
+    private fun hookBatteryProtect(clazz: Class<*>) {
+        XposedHelpers.findAndHookMethod(
+            clazz,
+            "onBatteryLevelChanged",
+            Int::class.java,
+            Boolean::class.java,
+            Boolean::class.java,
+            Boolean::class.java,
+            object : XC_MethodHook() {
+                override fun afterHookedMethod(param: MethodHookParam?) {
+                    super.afterHookedMethod(param)
+                    val level = param?.args?.get(0) as Int
+                    val pluggedIn = param.args?.get(1) as Boolean
+                    if(pluggedIn && level >= 91){
+                        execShell("echo 0 > /sys/class/power_supply/battery/battery_charging_enabled")
+                    }else{
+                        execShell("echo 1 > /sys/class/power_supply/battery/battery_charging_enabled")
+                    }
+                }
+            }
+        )
+    }
 }
