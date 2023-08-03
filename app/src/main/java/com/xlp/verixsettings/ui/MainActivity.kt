@@ -1,13 +1,16 @@
 package com.xlp.verixsettings.ui
 
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.FileObserver
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.xlp.verixsettings.R
 import com.xlp.verixsettings.provider.SharedPrefsProvider
+import com.xlp.verixsettings.utils.AppManager
 import com.xlp.verixsettings.utils.PrefsHelpers
 import com.xlp.verixsettings.utils.PrefsUtils
 import java.io.File
@@ -19,6 +22,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        AppManager.getInstance().addActivity(this)
+        window.decorView.layoutDirection = resources.configuration.layoutDirection
+        window.statusBarColor = Color.parseColor("#00000000")
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         supportFragmentManager.beginTransaction().replace(android.R.id.content, PreferenceFragment()).commit()
         initData()
     }
@@ -28,8 +35,12 @@ class MainActivity : AppCompatActivity() {
             Log.i("prefs", "Changed: $s")
             val `val` = sharedPreferences.all[s]
             var path = ""
-            if (`val` is String) path = "string/" else if (`val` is Set<*>) path = "stringset/" else if (`val` is Int) path =
-                "integer/" else if (`val` is Boolean) path = "boolean/"
+            when (`val`) {
+                is String -> path = "string/"
+                is Set<*> -> path = "stringset/"
+                is Int -> path = "integer/"
+                is Boolean -> path = "boolean/"
+            }
             contentResolver.notifyChange(Uri.parse("content://" + SharedPrefsProvider.AUTHORITY + "/" + path + s), null)
             if (path != "") contentResolver.notifyChange(Uri.parse("content://" + SharedPrefsProvider.AUTHORITY + "/pref/" + path + s), null)
         }
