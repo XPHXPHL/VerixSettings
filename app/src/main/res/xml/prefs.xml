@@ -23,6 +23,10 @@
             android:defaultValue="false"
             android:key="back_vibrator"
             android:title="启用返回震动" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="cipher_disk_vibrator"
+            android:title="启用魅族设置密码盘震动" />
 
         <PreferenceCategory androidprv:title="充电专区" />
         <SwitchPreference

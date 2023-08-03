@@ -101,6 +101,16 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
                 hookBatteryProtect(targetClass)
             }
         }
+        if (lpparam.packageName == "com.android.settings") {
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking target app: ${lpparam.packageName}")
+            if (mPrefsMap.getBoolean("cipher_disk_vibrator")){
+                val targetClass = XposedHelpers.findClass(
+                    "com.meizu.settings.widget.LockDigitView",
+                    lpparam.classLoader
+                )
+                hookCipherDiskVib(targetClass)
+            }
+        }
     }
 
     private fun hookBlur(clazz: Class<*>) {
@@ -208,6 +218,23 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
                     }else{
                         execShell("echo 1 > /sys/class/power_supply/battery/battery_charging_enabled")
                     }
+                }
+            }
+        )
+    }
+    private fun hookCipherDiskVib(clazz: Class<*>){
+        XposedHelpers.findAndHookMethod(
+            clazz,
+            "detectAndAddHit",
+            Float::class.java,
+            Float::class.java,
+            Boolean::class.java,
+            object : XC_MethodHook() {
+                @SuppressLint("WrongConstant")
+                override fun beforeHookedMethod(param: MethodHookParam?) {
+                    super.beforeHookedMethod(param)
+                    val targetObject = param?.thisObject
+                    XposedHelpers.setBooleanField(targetObject, "mEnableHapticFeedback", true)
                 }
             }
         )
