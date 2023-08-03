@@ -12,7 +12,6 @@ import com.xlp.verixsettings.utils.PrefsMap
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.IXposedHookZygoteInit
 import de.robv.android.xposed.XC_MethodHook
-import de.robv.android.xposed.XC_MethodReplacement
 import de.robv.android.xposed.XSharedPreferences
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
@@ -80,15 +79,15 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
                 hookFingerVib(targetClass)
             }
 
-            if (mPrefsMap.getBoolean("back_vibrator")){
-            val targetClass = XposedHelpers.findClass(
-                "com.flyme.systemui.navigationbar.gestural.EdgeBackView",
-                lpparam.classLoader
-            )
+            if (mPrefsMap.getBoolean("back_vibrator")) {
+                val targetClass = XposedHelpers.findClass(
+                    "com.flyme.systemui.navigationbar.gestural.EdgeBackView",
+                    lpparam.classLoader
+                )
                 hookBackVib(targetClass)
             }
 
-            if (mPrefsMap.getBoolean("finger_unlock")){
+            if (mPrefsMap.getBoolean("finger_unlock")) {
                 if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking Finger_unlock is")
                 val targetClass = XposedHelpers.findClass(
                     "com.android.keyguard.KeyguardUpdateMonitor",
@@ -166,20 +165,20 @@ private fun hookBackVib(clazz: Class<*>) {
         }
     )
 }
-private fun hookFingerUnlock(clazz: Class<*>){
+
+private fun hookFingerUnlock(clazz: Class<*>) {
     XposedHelpers.findAndHookMethod(
         clazz,
         "isFingerprintDisabled",
         Int::class.java,
-        object : XC_MethodHook(){
+        object : XC_MethodHook() {
             @Suppress("DEPRECATION")
             @SuppressLint("WrongConstant")
             override fun beforeHookedMethod(param: MethodHookParam?) {
                 super.beforeHookedMethod(param)
                 val mContext = XposedHelpers.getObjectField(param?.thisObject, "mContext") as Context
                 val mPowerManager = mContext.getSystemService("power") as PowerManager
-                param?.result = !(mPowerManager.isScreenOn())
-
+                param?.result = !(mPowerManager.isScreenOn)
             }
         }
 
