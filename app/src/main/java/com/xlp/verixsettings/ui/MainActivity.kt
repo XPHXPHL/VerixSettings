@@ -7,12 +7,15 @@ import android.os.Bundle
 import android.os.FileObserver
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.Preference
 import com.xlp.verixsettings.R
 import com.xlp.verixsettings.provider.SharedPrefsProvider
 import com.xlp.verixsettings.utils.AppManager
 import com.xlp.verixsettings.utils.PrefsHelpers
 import com.xlp.verixsettings.utils.PrefsUtils
+import com.xlp.verixsettings.utils.execShell
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
@@ -26,8 +29,39 @@ class MainActivity : AppCompatActivity() {
         window.decorView.layoutDirection = resources.configuration.layoutDirection
         window.statusBarColor = Color.parseColor("#00000000")
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        supportFragmentManager.beginTransaction().replace(android.R.id.content, PreferenceFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(android.R.id.content, MainFragment()).commit()
         initData()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AppManager.getInstance().removeActivity(this)
+    }
+
+    class MainFragment : PreferenceFragment(), Preference.OnPreferenceChangeListener {
+        private var mHsPower: Preference? = null
+        override fun initPrefs() {
+            mHsPower = findPreference("hs_power")
+            mHsPower?.onPreferenceChangeListener = this
+        }
+
+
+        override fun getContentResId(): Int {
+            return R.xml.prefs
+        }
+
+        override fun onPreferenceChange(preference: Preference, newValue: Any?): Boolean {
+            if (preference === mHsPower) {
+                if (newValue as Boolean) {
+                    Toast.makeText(activity, "Enable HsPower", Toast.LENGTH_SHORT).show()
+                    execShell("echo 0 > /sys/class/power_supply/battery/battery_charging_enabled")
+                } else {
+                    Toast.makeText(activity, "Disable HsPower", Toast.LENGTH_SHORT).show()
+                    execShell("echo 1 > /sys/class/power_supply/battery/battery_charging_enabled")
+                }
+            }
+            return true
+        }
     }
 
     private fun initData() {

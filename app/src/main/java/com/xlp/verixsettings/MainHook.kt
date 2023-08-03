@@ -39,8 +39,6 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
     }
 
     override fun handleLoadPackage(lpparam: XC_LoadPackage.LoadPackageParam) {
-
-
         if (lpparam.packageName == "com.android.systemui") {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking target app: ${lpparam.packageName}")
             if (mPrefsMap.getBoolean("blur_enabled")) {
