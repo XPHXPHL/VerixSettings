@@ -3,14 +3,14 @@
     xmlns:androidprv="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory>
-        <PreferenceCategory androidprv:title="UI界面专区"/>
+        <PreferenceCategory androidprv:title="UI界面专区" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="blur_enabled"
-            android:title="恢复通知模糊"
-            android:summary="为非魅族20/20Pro用户恢复被阉割掉通知中心模糊"/>
+            android:summary="为非魅族20/20Pro用户恢复被阉割掉通知中心模糊"
+            android:title="恢复通知模糊" />
 
-        <PreferenceCategory androidprv:title="震动专区"/>
+        <PreferenceCategory androidprv:title="震动专区" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="face_vibrator"
@@ -24,29 +24,29 @@
             android:key="back_vibrator"
             android:title="启用返回震动" />
 
-        <PreferenceCategory androidprv:title="充电专区"/>
+        <PreferenceCategory androidprv:title="充电专区" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="hs_power"
-            android:title="H.S充电"
-            android:summary="旁路冲电"/>
+            android:summary="旁路冲电"
+            android:title="H.S充电" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="battery_protect"
-            android:title="电池保护"
-            android:summary="114514"/>
+            android:summary="114514"
+            android:title="电池保护" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="auto_off_hs_power"
-            android:title="自动关闭H.S充电"
-            android:summary="旁路冲电"/>
+            android:summary="旁路冲电"
+            android:title="自动关闭H.S充电" />
 
-        <PreferenceCategory androidprv:title="指纹专区"/>
+        <PreferenceCategory androidprv:title="指纹专区" />
         <SwitchPreference
-        android:defaultValue="false"
-        android:key="finger_unlock"
-        android:title="按压指纹按键解锁"
-        android:summary=""/>
+            android:defaultValue="false"
+            android:key="finger_unlock"
+            android:summary=""
+            android:title="按压指纹按键解锁" />
     </PreferenceCategory>
 
 </PreferenceScreen>

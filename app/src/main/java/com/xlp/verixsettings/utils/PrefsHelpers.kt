@@ -9,7 +9,7 @@ import java.io.File
 
 object PrefsHelpers {
     const val mAppModulePkg = BuildConfig.APPLICATION_ID
-    const val mPrefsName = "VerixSettings_Config"
+    const val mPrefsName = "com.xlp.verixsettings_preferences"
 
     @Synchronized
     fun getProtectedContext(context: Context): Context {
