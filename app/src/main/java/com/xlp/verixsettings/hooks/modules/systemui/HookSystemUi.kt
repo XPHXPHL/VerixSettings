@@ -6,7 +6,7 @@ import android.os.PowerManager
 import android.os.VibrationEffect
 import android.os.Vibrator
 import com.xlp.verixsettings.BuildConfig
-import com.xlp.verixsettings.mPrefsMap
+import com.xlp.verixsettings.hooks.mPrefsMap
 import com.xlp.verixsettings.utils.Init
 import com.xlp.verixsettings.utils.execShell
 import de.robv.android.xposed.XC_MethodHook

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.VerixSettings" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.VerixSettings" parent="Theme.Material3.DayNight">
         <item name="preferenceTheme">@style/CatalogPreferenceThemeOverlay</item>
     </style>
 

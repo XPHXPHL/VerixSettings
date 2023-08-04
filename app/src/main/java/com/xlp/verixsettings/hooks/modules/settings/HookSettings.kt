@@ -1,7 +1,7 @@
 package com.xlp.verixsettings.hooks.modules.settings
 
 import android.annotation.SuppressLint
-import com.xlp.verixsettings.mPrefsMap
+import com.xlp.verixsettings.hooks.mPrefsMap
 import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XposedHelpers
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam

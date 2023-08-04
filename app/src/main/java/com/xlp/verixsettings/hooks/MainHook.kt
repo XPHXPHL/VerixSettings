@@ -1,5 +1,6 @@
-package com.xlp.verixsettings
+package com.xlp.verixsettings.hooks
 
+import com.xlp.verixsettings.BuildConfig
 import com.xlp.verixsettings.hooks.modules.settings.HookSettings.hookCipherDiskVib
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.batteryProtect
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.fingerUnlock
