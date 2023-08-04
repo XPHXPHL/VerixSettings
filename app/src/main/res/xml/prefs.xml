@@ -2,46 +2,46 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:androidprv="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory>
-        <PreferenceCategory androidprv:title="@string/Ui"/>
-        <SwitchPreference
+        <PreferenceCategory androidprv:title="@string/Ui" />
+        <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="blur_enabled"
             android:summary="@string/blur_enabled_summary"
             android:title="@string/blur_enabled" />
         <PreferenceCategory androidprv:title="@string/Vibrator" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="back_vibrator"
             android:summary="@string/back_vibrator_summary"
             android:title="@string/back_vibrator" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="cipher_disk_vibrator"
             android:summary="@string/cipher_disk_vibrator_summary"
             android:title="@string/cipher_disk_vibrator" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="face_vibrator"
             android:summary="@string/face_vibrator_summary"
             android:title="@string/face_vibrator" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="finger_vibrator"
             android:summary="@string/finger_vibrator_summary"
             android:title="@string/finger_vibrator" />
         <PreferenceCategory androidprv:title="@string/Charge" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="battery_protect"
             android:summary="@string/battery_protect_summary"
             android:title="@string/battery_protect" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="hs_power"
             android:summary="@string/hs_power_summary"
             android:title="@string/hs_power" />
         <PreferenceCategory androidprv:title="@string/Fingerprint" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="finger_unlock"
             android:summary="@string/finger_unlock_summary"
