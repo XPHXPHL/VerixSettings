@@ -5,6 +5,9 @@
     <string name="blur_enabled">通知模糊</string>
     <string name="blur_enabled_summary">为非魅族20/20Pro用户恢复被阉割掉通知中心模糊。</string>
 
+    <string name="about_xph">XiaoPoHai(XPH)</string>
+    <string name="about_yukonga">YuKongA</string>
+    <string name="about_creamdraft">CreamDraft</string>
 
     <string name="Vibrator">震动专区</string>
     <string name="Ui">Ui界面专区</string>

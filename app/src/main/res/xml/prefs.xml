@@ -46,5 +46,27 @@
             android:key="finger_unlock"
             android:summary="@string/finger_unlock_summary"
             android:title="@string/finger_unlock" />
+        <PreferenceCategory androidprv:title="关于我们" />
+        <Preference
+            android:icon="@drawable/about_xph"
+            android:title="@string/about_xph">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/XPHXPHL" />
+        </Preference>
+        <Preference
+            android:icon="@drawable/about_yukonga"
+            android:title="@string/about_yukonga">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/YuKongA" />
+        </Preference>
+        <Preference
+            android:icon="@drawable/about_creamdraft"
+            android:title="@string/about_creamdraft">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/Cheng171" />
+        </Preference>
     </PreferenceCategory>
 </PreferenceScreen>
