@@ -3,11 +3,10 @@ package com.xlp.verixsettings.hooks.modules.systemui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.PowerManager
-import android.os.VibrationEffect
-import android.os.Vibrator
 import com.xlp.verixsettings.BuildConfig
 import com.xlp.verixsettings.hooks.mPrefsMap
 import com.xlp.verixsettings.utils.Init
+import com.xlp.verixsettings.utils.SystemUtils.vibratorUtils
 import com.xlp.verixsettings.utils.execShell
 import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XposedBridge
@@ -109,12 +108,9 @@ object HookSystemUi {
             Boolean::class.java,
             object : XC_MethodHook() {
                 @SuppressLint("WrongConstant")
-                override fun afterHookedMethod(param: MethodHookParam?) {
-                    super.afterHookedMethod(param)
-                    val mContext =
-                        XposedHelpers.getObjectField(param?.thisObject, "mContext") as Context
-                    val mVibrator = mContext.getSystemService("vibrator") as Vibrator
-                    mVibrator.vibrate(VibrationEffect.createPredefined(31021))
+                override fun beforeHookedMethod(param: MethodHookParam) {
+                    super.beforeHookedMethod(param)
+                    vibratorUtils(param,31021)
                 }
             }
         )
@@ -127,12 +123,9 @@ object HookSystemUi {
             Boolean::class.java,
             object : XC_MethodHook() {
                 @SuppressLint("WrongConstant")
-                override fun afterHookedMethod(param: MethodHookParam?) {
+                override fun afterHookedMethod(param: MethodHookParam) {
                     super.afterHookedMethod(param)
-                    val mContext =
-                        XposedHelpers.getObjectField(param?.thisObject, "mContext") as Context
-                    val mVibrator = mContext.getSystemService("vibrator") as Vibrator
-                    mVibrator.vibrate(VibrationEffect.createPredefined(31021))
+                    vibratorUtils(param,31021)
                 }
             }
         )
@@ -144,12 +137,10 @@ object HookSystemUi {
             "triggerBack",
             object : XC_MethodHook() {
                 @SuppressLint("WrongConstant")
-                override fun afterHookedMethod(param: MethodHookParam?) {
+                override fun afterHookedMethod(param: MethodHookParam) {
                     super.afterHookedMethod(param)
-                    val mContext =
-                        XposedHelpers.getObjectField(param?.thisObject, "mContext") as Context
-                    val mVibrator = mContext.getSystemService("vibrator") as Vibrator
-                    mVibrator.vibrate(VibrationEffect.createPredefined(31021))
+                    vibratorUtils(param,31021)
+
                 }
             }
         )
