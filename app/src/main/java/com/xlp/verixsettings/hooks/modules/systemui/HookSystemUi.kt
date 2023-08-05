@@ -39,7 +39,7 @@ object HookSystemUi {
         if (mPrefsMap.getBoolean("face_vibrator")) {
             if (BuildConfig.DEBUG) XposedBridge.log("${Init.TAG}: Hooking face unlocked successfully vibrate")
             val targetClass = XposedHelpers.findClass(
-                "com.android.keyguard.KeyguardUpdateMonitor",
+                "com.flyme.systemui.facerecognition.FaceRecognitionAnimationView",
                 lpparam.classLoader
             )
             hookFaceVib(targetClass)
@@ -118,8 +118,7 @@ object HookSystemUi {
     private fun hookFaceVib(clazz: Class<*>) {
         XposedHelpers.findAndHookMethod(
             clazz,
-            "onFaceRecognitionSucceeded",
-            Boolean::class.java,
+            "startSuccessAnimation",
             object : XC_MethodHook() {
                 override fun afterHookedMethod(param: MethodHookParam) {
                     super.afterHookedMethod(param)
