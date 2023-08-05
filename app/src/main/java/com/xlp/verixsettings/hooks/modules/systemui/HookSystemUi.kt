@@ -107,7 +107,6 @@ object HookSystemUi {
             Int::class.java,
             Boolean::class.java,
             object : XC_MethodHook() {
-                @SuppressLint("WrongConstant")
                 override fun beforeHookedMethod(param: MethodHookParam) {
                     super.beforeHookedMethod(param)
                     vibratorUtils(param,31021)
@@ -122,7 +121,6 @@ object HookSystemUi {
             "onFaceRecognitionSucceeded",
             Boolean::class.java,
             object : XC_MethodHook() {
-                @SuppressLint("WrongConstant")
                 override fun afterHookedMethod(param: MethodHookParam) {
                     super.afterHookedMethod(param)
                     vibratorUtils(param,31021)
@@ -136,7 +134,6 @@ object HookSystemUi {
             clazz,
             "triggerBack",
             object : XC_MethodHook() {
-                @SuppressLint("WrongConstant")
                 override fun afterHookedMethod(param: MethodHookParam) {
                     super.afterHookedMethod(param)
                     vibratorUtils(param,31021)
