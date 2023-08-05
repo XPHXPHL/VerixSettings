@@ -107,8 +107,8 @@ object HookSystemUi {
             Int::class.java,
             Boolean::class.java,
             object : XC_MethodHook() {
-                override fun beforeHookedMethod(param: MethodHookParam) {
-                    super.beforeHookedMethod(param)
+                override fun afterHookedMethod(param: MethodHookParam) {
+                    super.afterHookedMethod(param)
                     vibratorUtils(param,31021)
                 }
             }
