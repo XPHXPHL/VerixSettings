@@ -14,8 +14,10 @@ import com.xlp.verixsettings.utils.PrefsHelpers.mPrefsName
 import com.xlp.verixsettings.utils.PrefsMap
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.IXposedHookZygoteInit
+import de.robv.android.xposed.XC_MethodReplacement
 import de.robv.android.xposed.XSharedPreferences
 import de.robv.android.xposed.XposedBridge
+import de.robv.android.xposed.XposedHelpers
 import de.robv.android.xposed.callbacks.XC_LoadPackage
 
 var mPrefsMap = PrefsMap<String, Any>()
@@ -38,7 +40,6 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
             }
         }
     }
-
     override fun handleLoadPackage(lpparam: XC_LoadPackage.LoadPackageParam?) {
         when (lpparam?.packageName){
             "com.android.systemui" -> {
@@ -52,6 +53,17 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
             "com.android.settings" -> {
                 hookCipherDiskVib(lpparam)
             }
+            "com.xlp.verixsettings" -> {
+                hookCheckLSPosed(lpparam)
+            }
         }
+    }
+    private fun hookCheckLSPosed(lpparam: XC_LoadPackage.LoadPackageParam){
+        XposedHelpers.findAndHookMethod(
+            "com.xlp.verixsettings.ui.MainActivity",
+            lpparam.classLoader,
+            "isModuleActive",
+            XC_MethodReplacement.returnConstant(true)
+        )
     }
 }
