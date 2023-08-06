@@ -2,12 +2,13 @@ package com.xlp.verixsettings.hooks
 
 import com.xlp.verixsettings.BuildConfig
 import com.xlp.verixsettings.hooks.modules.settings.HookSettings.hookCipherDiskVib
+import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.appShade
+import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.backVib
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.batteryProtect
+import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.blur
+import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.faceVib
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.fingerUnlock
-import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.hookBackVib
-import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.hookBlur
-import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.hookFaceVib
-import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.hookFingerVib
+import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.fingerVib
 import com.xlp.verixsettings.utils.Init.TAG
 import com.xlp.verixsettings.utils.PrefsHelpers.mAppModulePkg
 import com.xlp.verixsettings.utils.PrefsHelpers.mPrefsName
@@ -43,12 +44,14 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
     override fun handleLoadPackage(lpparam: XC_LoadPackage.LoadPackageParam?) {
         when (lpparam?.packageName){
             "com.android.systemui" -> {
-                hookBlur(lpparam)
-                hookBackVib(lpparam)
-                hookFaceVib(lpparam)
-                hookFingerVib(lpparam)
+                blur(lpparam)
+                backVib(lpparam)
+                faceVib(lpparam)
+                fingerVib(lpparam)
                 fingerUnlock(lpparam)
                 batteryProtect(lpparam)
+                appShade(lpparam)
+
             }
             "com.android.settings" -> {
                 hookCipherDiskVib(lpparam)

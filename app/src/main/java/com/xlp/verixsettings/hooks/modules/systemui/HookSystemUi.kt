@@ -2,6 +2,7 @@ package com.xlp.verixsettings.hooks.modules.systemui
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.IBinder
 import android.os.PowerManager
 import com.xlp.verixsettings.BuildConfig
 import com.xlp.verixsettings.hooks.mPrefsMap
@@ -14,7 +15,7 @@ import de.robv.android.xposed.XposedHelpers
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 
 object HookSystemUi {
-    fun hookBlur(lpparam: LoadPackageParam) {
+    fun blur(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("blur_enabled")) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking Blur")
             val targetClass = XposedHelpers.findClass(
@@ -35,7 +36,7 @@ object HookSystemUi {
         }
     }
 
-    fun hookFaceVib(lpparam: LoadPackageParam) {
+    fun faceVib(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("face_vibrator")) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking face unlocked successfully vibrate")
             val targetClass = XposedHelpers.findClass(
@@ -46,7 +47,7 @@ object HookSystemUi {
         }
     }
 
-    fun hookBackVib(lpparam: LoadPackageParam) {
+    fun backVib(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("back_vibrator")) {
             val targetClass = XposedHelpers.findClass(
                 "com.flyme.systemui.navigationbar.gestural.EdgeBackView",
@@ -57,7 +58,7 @@ object HookSystemUi {
 
     }
 
-    fun hookFingerVib(lpparam: LoadPackageParam) {
+    fun fingerVib(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("finger_vibrator")) {
             val targetClass = XposedHelpers.findClass(
                 "com.android.keyguard.KeyguardUpdateMonitor",
@@ -84,6 +85,16 @@ object HookSystemUi {
                 lpparam.classLoader
             )
             hookBatteryProtect(targetClass)
+        }
+    }
+
+    fun appShade(lpparam: LoadPackageParam){
+        if (mPrefsMap.getBoolean("app_shade")){
+            val targetClass = XposedHelpers.findClass(
+                "com.android.wm.shell.startingsurface.StartingWindowController",
+                lpparam.classLoader
+            )
+            hookAppShade(targetClass)
         }
     }
 
@@ -183,5 +194,30 @@ object HookSystemUi {
                 }
             }
         )
+    }
+
+    private fun hookAppShade(clazz: Class<*>){
+        XposedHelpers.findAndHookMethod(
+            clazz,
+            "lambda\$addStartingWindow$0\$com-android-wm-shell-startingsurface-StartingWindowController",
+            "android.window.StartingWindowInfo",
+            IBinder::class.java,
+        )
+        object : XC_MethodHook(){
+            override fun beforeHookedMethod(param: MethodHookParam) {
+                super.beforeHookedMethod(param)
+                val windowInfo = param.args[0]
+                val appToken = param.args[1] as IBinder
+                val mStartingSurfaceDrawer =
+                    XposedHelpers.getObjectField(param.thisObject, "mStartingSurfaceDrawer")
+                XposedHelpers.callMethod(
+                    mStartingSurfaceDrawer,
+                    "addSplashScreenStartingWindow",
+                    windowInfo,
+                    appToken,
+                    0
+                )
+            }
+        }
     }
 }

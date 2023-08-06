@@ -8,6 +8,11 @@
             android:key="blur_enabled"
             android:summary="@string/blur_enabled_summary"
             android:title="@string/blur_enabled" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="app_shade"
+            android:summary="@string/app_shade_summary"
+            android:title="@string/app_shade" />
         <PreferenceCategory androidprv:title="@string/Vibrator" />
         <SwitchPreferenceCompat
             android:defaultValue="false"

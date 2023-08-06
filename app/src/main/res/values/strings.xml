@@ -16,6 +16,9 @@
     <string name="Charge">充电设定</string>
     <string name="Fingerprint">指纹专区</string>
 
+    <string name="app_shade">软件启动遮罩</string>
+    <string name="app_shade_summary">还原原生开启应用的遮罩功能—来自Ex3124。</string>
+
     <string name="back_vibrator">返回震动</string>
     <string name="back_vibrator_summary">执行返回手势触发线性震动反馈。</string>
 
