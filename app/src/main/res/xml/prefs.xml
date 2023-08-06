@@ -62,6 +62,12 @@
                 android:data="https://github.com/YuKongA" />
         </Preference>
         <Preference
+            android:icon="@drawable/about_ex3124"
+            android:title="@string/about_ex3124"/>
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/EX3124" />
+        <Preference
             android:icon="@drawable/about_creamdraft"
             android:title="@string/about_creamdraft">
             <intent
