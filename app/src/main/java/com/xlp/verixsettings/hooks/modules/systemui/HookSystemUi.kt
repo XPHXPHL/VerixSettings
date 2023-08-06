@@ -10,6 +10,7 @@ import com.xlp.verixsettings.utils.Init.TAG
 import com.xlp.verixsettings.utils.SystemUtils.vibratorUtils
 import com.xlp.verixsettings.utils.writeFileNode
 import de.robv.android.xposed.XC_MethodHook
+import de.robv.android.xposed.XC_MethodReplacement
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
@@ -98,6 +99,16 @@ object HookSystemUi {
         }
     }
 
+    fun clipboardEditor(lpparam: LoadPackageParam){
+        if (mPrefsMap.getBoolean("clipboard_editor")) {
+            val targetClass = XposedHelpers.findClass(
+            "com.android.systemui.clipboardoverlay.ClipboardListener",
+            lpparam.classLoader,
+            )
+            hookClipboardEditor(targetClass)
+        }
+    }
+
     private fun hookBlur(clazz: Class<*>) {
         XposedHelpers.findAndHookMethod(
             clazz,
@@ -169,7 +180,6 @@ object HookSystemUi {
                     param?.result = !(mPowerManager.isScreenOn)
                 }
             }
-
         )
     }
 
@@ -219,5 +229,24 @@ object HookSystemUi {
                 )
             }
         }
+    }
+    private fun hookClipboardEditor(clazz: Class<*>) {
+        XposedHelpers.findAndHookMethod(
+            clazz,
+            "start",
+            object : XC_MethodReplacement() {
+                @Throws(Throwable::class)
+                override fun replaceHookedMethod(param: MethodHookParam): Any? {
+                    val mClipboardManager =
+                        XposedHelpers.getObjectField(param.thisObject, "mClipboardManager")
+                    XposedHelpers.callMethod(
+                        mClipboardManager,
+                        "addPrimaryClipChangedListener",
+                        param.thisObject
+                    )
+                    return null
+                }
+            }
+        )
     }
 }

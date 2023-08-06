@@ -6,6 +6,7 @@ import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.appShade
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.backVib
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.batteryProtect
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.blur
+import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.clipboardEditor
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.faceVib
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.fingerUnlock
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.fingerVib
@@ -51,6 +52,7 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
                 fingerUnlock(lpparam)
                 batteryProtect(lpparam)
                 appShade(lpparam)
+                clipboardEditor(lpparam)
 
             }
             "com.android.settings" -> {
