@@ -5,9 +5,9 @@ import android.content.Context
 import android.os.PowerManager
 import com.xlp.verixsettings.BuildConfig
 import com.xlp.verixsettings.hooks.mPrefsMap
-import com.xlp.verixsettings.utils.Init
+import com.xlp.verixsettings.utils.Init.TAG
 import com.xlp.verixsettings.utils.SystemUtils.vibratorUtils
-import com.xlp.verixsettings.utils.execShell
+import com.xlp.verixsettings.utils.writeFileNode
 import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
@@ -16,7 +16,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 object HookSystemUi {
     fun hookBlur(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("blur_enabled")) {
-            if (BuildConfig.DEBUG) XposedBridge.log("${Init.TAG}: Hooking Blur")
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking Blur")
             val targetClass = XposedHelpers.findClass(
                 "com.android.systemui.statusbar.notification.row.ActivatableNotificationView",
                 lpparam.classLoader
@@ -37,7 +37,7 @@ object HookSystemUi {
 
     fun hookFaceVib(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("face_vibrator")) {
-            if (BuildConfig.DEBUG) XposedBridge.log("${Init.TAG}: Hooking face unlocked successfully vibrate")
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking face unlocked successfully vibrate")
             val targetClass = XposedHelpers.findClass(
                 "com.flyme.systemui.facerecognition.FaceRecognitionAnimationView",
                 lpparam.classLoader
@@ -171,14 +171,14 @@ object HookSystemUi {
             Boolean::class.java,
             Boolean::class.java,
             object : XC_MethodHook() {
-                override fun afterHookedMethod(param: MethodHookParam?) {
-                    super.afterHookedMethod(param)
+                override fun beforeHookedMethod(param: MethodHookParam?) {
+                    super.beforeHookedMethod(param)
                     val level = param?.args?.get(0) as Int
                     val pluggedIn = param.args?.get(1) as Boolean
                     if (pluggedIn && level >= 91) {
-                        execShell("echo 0 > /sys/class/power_supply/battery/battery_charging_enabled")
+                        writeFileNode("/sys/class/power_supply/battery/battery_charging_enabled","0")
                     } else {
-                        execShell("echo 1 > /sys/class/power_supply/battery/battery_charging_enabled")
+                        writeFileNode("/sys/class/power_supply/battery/battery_charging_enabled","1")
                     }
                 }
             }
