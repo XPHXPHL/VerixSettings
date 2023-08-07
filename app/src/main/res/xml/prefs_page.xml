@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:summary="Summary"
+            android:title="Title" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

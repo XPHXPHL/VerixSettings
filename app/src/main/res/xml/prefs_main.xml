@@ -2,6 +2,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:androidprv="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory>
+        <PreferenceCategory androidprv:title="小标题" />
+        <Preference android:title="二级页示例">
+            <intent
+                android:targetClass="com.xlp.verixsettings.ui.PageActivity"
+                android:targetPackage="com.xlp.verixsettings" />
+        </Preference>
         <PreferenceCategory androidprv:title="@string/Ui" />
         <SwitchPreferenceCompat
             android:defaultValue="false"

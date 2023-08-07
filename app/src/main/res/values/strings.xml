@@ -20,7 +20,6 @@
     <string name="app_shade">软件启动遮罩</string>
     <string name="app_shade_summary">还原原生开启应用的遮罩功能—来自Ex3124。</string>
 
-
     <string name="forced_screen_capture">强制截图</string>
     <string name="forced_screen_capture_summary">使某些场景允许进行截屏操作—来自Ex3124。</string>
 
@@ -50,4 +49,6 @@
 
     <string name="battery_protect">电池保养</string>
     <string name="battery_protect_summary">阻止设备充电至90%以上电量，延长电池充放电循环的时间以延长电池寿命。</string>
+
+    <string name="page">二级页示例</string>
 </resources>

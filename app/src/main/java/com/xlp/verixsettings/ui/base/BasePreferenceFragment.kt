@@ -1,4 +1,4 @@
-package com.xlp.verixsettings.ui
+package com.xlp.verixsettings.ui.base
 
 import android.content.Context
 import android.os.Bundle
@@ -6,7 +6,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.xlp.verixsettings.utils.PrefsHelpers.mPrefsName
 
-abstract class PreferenceFragment : PreferenceFragmentCompat() {
+abstract class BasePreferenceFragment : PreferenceFragmentCompat() {
     private var mContentResId = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
