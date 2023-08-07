@@ -8,7 +8,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 
 object HookSettings {
 
-    fun hookCipherDiskVib(lpparam: LoadPackageParam) {
+    fun cipherDiskVib(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("cipher_disk_vibrator")) {
             val targetClass = XposedHelpers.findClass(
                 "com.meizu.settings.widget.LockDigitView",

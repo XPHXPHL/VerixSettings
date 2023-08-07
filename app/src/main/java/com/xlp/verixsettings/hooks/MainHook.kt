@@ -1,7 +1,8 @@
 package com.xlp.verixsettings.hooks
 
 import com.xlp.verixsettings.BuildConfig
-import com.xlp.verixsettings.hooks.modules.settings.HookSettings.hookCipherDiskVib
+import com.xlp.verixsettings.hooks.modules.android.HookAndroid.gameFps
+import com.xlp.verixsettings.hooks.modules.settings.HookSettings.cipherDiskVib
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.appShade
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.backVib
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.batteryProtect
@@ -56,10 +57,16 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
 
             }
             "com.android.settings" -> {
-                hookCipherDiskVib(lpparam)
+                cipherDiskVib(lpparam)
             }
             "com.xlp.verixsettings" -> {
                 hookCheckLSPosed(lpparam)
+            }
+            "android" ->{
+                gameFps(lpparam)
+            }
+            "com.flyme.systemuiex" -> {
+
             }
         }
     }
