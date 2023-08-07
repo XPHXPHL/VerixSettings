@@ -212,24 +212,24 @@ object HookSystemUi {
             "lambda\$addStartingWindow$0\$com-android-wm-shell-startingsurface-StartingWindowController",
             "android.window.StartingWindowInfo",
             IBinder::class.java,
-        )
-        object : XC_MethodHook(){
-            override fun beforeHookedMethod(param: MethodHookParam) {
-                super.beforeHookedMethod(param)
-                val windowInfo = param.args[0]
-                val appToken = param.args[1] as IBinder
-                val mStartingSurfaceDrawer =
-                    XposedHelpers.getObjectField(param.thisObject, "mStartingSurfaceDrawer")
-                XposedHelpers.callMethod(
-                    mStartingSurfaceDrawer,
-                    "addSplashScreenStartingWindow",
-                    windowInfo,
-                    appToken,
-                    0
-                )
-            }
+            object : XC_MethodHook() {
+                @Throws(Throwable::class)
+                override fun beforeHookedMethod(param: MethodHookParam) {
+                    super.beforeHookedMethod(param)
+                    val windowInfo = param.args[0]
+                    val appToken = param.args[1] as IBinder
+                    val mStartingSurfaceDrawer =
+                        XposedHelpers.getObjectField(param.thisObject, "mStartingSurfaceDrawer")
+                    XposedHelpers.callMethod(
+                        mStartingSurfaceDrawer,
+                        "addSplashScreenStartingWindow",
+                        windowInfo,
+                        appToken,
+                        0
+                    )
+                }
+            })
         }
-    }
     private fun hookClipboardEditor(clazz: Class<*>) {
         XposedHelpers.findAndHookMethod(
             clazz,
