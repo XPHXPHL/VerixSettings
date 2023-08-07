@@ -6,7 +6,9 @@
     </style>
 
     <style name="CatalogPreferenceThemeOverlay" parent="PreferenceThemeOverlay">
-        <item name="switchPreferenceCompatStyle">@style/Preference.SwitchPreferenceCompat.VerixSettings</item>
+        <item name="switchPreferenceCompatStyle">
+            @style/Preference.SwitchPreferenceCompat.VerixSettings
+        </item>
     </style>
 
     <style name="Preference.SwitchPreferenceCompat.VerixSettings" parent="Preference.SwitchPreferenceCompat.Material">
