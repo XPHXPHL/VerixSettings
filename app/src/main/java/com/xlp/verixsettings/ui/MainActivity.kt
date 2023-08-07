@@ -7,14 +7,12 @@ import android.os.FileObserver
 import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.preference.Preference
 import com.xlp.verixsettings.R
 import com.xlp.verixsettings.provider.SharedPrefsProvider
 import com.xlp.verixsettings.ui.base.BaseAppCompatActivity
 import com.xlp.verixsettings.ui.base.BasePreferenceFragment
 import com.xlp.verixsettings.utils.PrefsHelpers
 import com.xlp.verixsettings.utils.PrefsUtils
-import com.xlp.verixsettings.utils.execShell
 import java.io.File
 import kotlin.system.exitProcess
 
@@ -31,30 +29,12 @@ class MainActivity : BaseAppCompatActivity() {
     override fun initFragment(): Fragment {
         return MainFragment()
     }
-
-    class MainFragment : BasePreferenceFragment(), Preference.OnPreferenceChangeListener {
-        private var mHsPower: Preference? = null
-        override fun initPrefs() {
-            mHsPower = findPreference("hs_power")
-            mHsPower?.onPreferenceChangeListener = this
-        }
-
+    class MainFragment : BasePreferenceFragment() {
         override fun getContentResId(): Int {
             return R.xml.prefs_main
         }
 
-        override fun onPreferenceChange(preference: Preference, newValue: Any?): Boolean {
-            if (preference === mHsPower) {
-                if (newValue as Boolean) {
-                    Toast.makeText(activity, "Enable HsPower", Toast.LENGTH_SHORT).show()
-                    execShell("echo 0 > /sys/class/power_supply/battery/battery_charging_enabled")
-                } else {
-                    Toast.makeText(activity, "Disable HsPower", Toast.LENGTH_SHORT).show()
-                    execShell("echo 1 > /sys/class/power_supply/battery/battery_charging_enabled")
-                }
-            }
-            return true
-        }
+        override fun initPrefs() {}
     }
 
     private fun initData() {
