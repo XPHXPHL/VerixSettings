@@ -20,6 +20,10 @@
     <string name="app_shade">软件启动遮罩</string>
     <string name="app_shade_summary">还原原生开启应用的遮罩功能—来自Ex3124。</string>
 
+
+    <string name="forced_screen_capture">强制截图</string>
+    <string name="forced_screen_capture_summary">使某些场景允许进行截屏操作—来自Ex3124。</string>
+
     <string name="clipboard_editor">剪贴板编辑器</string>
     <string name="clipboard_editor_summary">还原原生的剪切板编辑器—来自Ex3124。</string>
 

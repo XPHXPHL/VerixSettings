@@ -16,10 +16,26 @@ object HookAndroid {
             hookGameFps(targetClass)
         }
     }
+    fun forcedScreenCapture(lpparam: LoadPackageParam){
+        if(mPrefsMap.getBoolean("forced_screen_capture")){
+            val targetClass = XposedHelpers.findClass(
+                "com.android.server.wm.WindowState",
+                lpparam.classLoader
+            )
+            hookForcedScreenCapture(targetClass)
+        }
+    }
     private fun hookGameFps(clazz: Class<*>){
         XposedHelpers.findAndHookMethod(
             clazz,
             "isFocused",
+            XC_MethodReplacement.returnConstant(false)
+        )
+    }
+    private fun hookForcedScreenCapture(clazz: Class<*>){
+        XposedHelpers.findAndHookMethod(
+            clazz,
+            "isSecureLocked",
             XC_MethodReplacement.returnConstant(false)
         )
     }

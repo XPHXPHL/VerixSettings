@@ -1,6 +1,7 @@
 package com.xlp.verixsettings.hooks
 
 import com.xlp.verixsettings.BuildConfig
+import com.xlp.verixsettings.hooks.modules.android.HookAndroid.forcedScreenCapture
 import com.xlp.verixsettings.hooks.modules.android.HookAndroid.gameFps
 import com.xlp.verixsettings.hooks.modules.settings.HookSettings.cipherDiskVib
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.appShade
@@ -11,6 +12,7 @@ import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.clipboardEditor
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.faceVib
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.fingerUnlock
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.fingerVib
+import com.xlp.verixsettings.hooks.modules.systemuiex.HookSystemuiex.forcedScreenCapture2
 import com.xlp.verixsettings.utils.Init.TAG
 import com.xlp.verixsettings.utils.PrefsHelpers.mAppModulePkg
 import com.xlp.verixsettings.utils.PrefsHelpers.mPrefsName
@@ -64,9 +66,10 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
             }
             "android" ->{
                 gameFps(lpparam)
+                forcedScreenCapture(lpparam)
             }
             "com.flyme.systemuiex" -> {
-
+                forcedScreenCapture2(lpparam)
             }
         }
     }
