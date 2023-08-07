@@ -51,4 +51,6 @@
     <string name="battery_protect">电池保养</string>
     <string name="battery_protect_summary">阻止设备充电至90%以上电量，延长电池充放电循环的时间以延长电池寿命。</string>
 
+    <string name="clock_seconds">时间显秒</string>
+    <string name="clock_seconds_summary">为状态栏时间开启HH::MM::SS显示样式。</string>
 </resources>
