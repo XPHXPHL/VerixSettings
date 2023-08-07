@@ -5,16 +5,16 @@ import com.xlp.verixsettings.R
 import com.xlp.verixsettings.ui.base.BaseAppCompatActivity
 import com.xlp.verixsettings.ui.base.BasePreferenceFragment
 
-class PageActivity : BaseAppCompatActivity() {
+class ChargeActivity : BaseAppCompatActivity() {
 
     override fun initFragment(): Fragment {
-        setTitle(R.string.page)
+        setTitle(R.string.Charge)
         return PageFragment()
     }
 
     class PageFragment : BasePreferenceFragment() {
         override fun getContentResId(): Int {
-            return R.xml.prefs_page
+            return R.xml.prefs_charge
         }
 
         override fun initPrefs() {}

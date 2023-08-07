@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory>
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="game_fps"
+        android:summary="@string/game_fps_summary"
+        android:title="@string/game_fps" />
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="forced_screen_capture"
+        android:summary="@string/forced_screen_capture_summary"
+        android:title="@string/forced_screen_capture" />
+    </PreferenceCategory>
+</PreferenceScreen>
