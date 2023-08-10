@@ -29,7 +29,7 @@ class OtherActivity : BaseAppCompatActivity() {
         override fun onPreferenceChange(preference: Preference, newValue: Any?): Boolean {
             val context = requireContext().applicationContext
             val pm = context.packageManager
-            val componentName = ComponentName(context,"com.xlp.verixsettings.ui.MainActivity")
+            val componentName = ComponentName(context,MainActivity::class.java.name + "Alias")
             if (preference === mHideIcon) {
                 if (newValue as Boolean) {
                     pm.setComponentEnabledSetting(
