@@ -2,10 +2,12 @@ package com.xlp.verixsettings.ui
 
 import android.content.SharedPreferences
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.FileObserver
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.xlp.verixsettings.R
 import com.xlp.verixsettings.provider.SharedPrefsProvider
@@ -65,6 +67,7 @@ class MainActivity : BaseAppCompatActivity() {
         PrefsHelpers.fixPermissionsAsync(applicationContext)
         try {
             fileObserver =
+                @RequiresApi(Build.VERSION_CODES.Q)
                 object : FileObserver(File(PrefsUtils.sharedPrefsPath.toString()), CLOSE_WRITE) {
                     override fun onEvent(event: Int, path: String?) {
                         PrefsHelpers.fixPermissionsAsync(applicationContext)
@@ -83,7 +86,7 @@ class MainActivity : BaseAppCompatActivity() {
                 exitProcess(0)
             }
         }else{
-            Toast.makeText(this, "模块未激活请激活后使用哦！", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "你的机型为适配哦！", Toast.LENGTH_SHORT).show()
             exitProcess(0)
         }
     }
