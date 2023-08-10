@@ -11,6 +11,7 @@ import com.xlp.verixsettings.R
 import com.xlp.verixsettings.provider.SharedPrefsProvider
 import com.xlp.verixsettings.ui.base.BaseAppCompatActivity
 import com.xlp.verixsettings.ui.base.BasePreferenceFragment
+import com.xlp.verixsettings.utils.CheckedModel.checked
 import com.xlp.verixsettings.utils.PrefsHelpers
 import com.xlp.verixsettings.utils.PrefsUtils
 import java.io.File
@@ -38,35 +39,50 @@ class MainActivity : BaseAppCompatActivity() {
     }
 
     private fun initData() {
-        mPreferenceChangeListener = SharedPreferences.OnSharedPreferenceChangeListener { sharedPreferences: SharedPreferences, s: String ->
-            Log.i("prefs", "Changed: $s")
-            val `val` = sharedPreferences.all[s]
-            var path = ""
-            when (`val`) {
-                is String -> path = "string/"
-                is Set<*> -> path = "stringset/"
-                is Int -> path = "integer/"
-                is Boolean -> path = "boolean/"
+        mPreferenceChangeListener =
+            SharedPreferences.OnSharedPreferenceChangeListener { sharedPreferences: SharedPreferences, s: String ->
+                Log.i("prefs", "Changed: $s")
+                val `val` = sharedPreferences.all[s]
+                var path = ""
+                when (`val`) {
+                    is String -> path = "string/"
+                    is Set<*> -> path = "stringset/"
+                    is Int -> path = "integer/"
+                    is Boolean -> path = "boolean/"
+                }
+                contentResolver.notifyChange(
+                    Uri.parse("content://" + SharedPrefsProvider.AUTHORITY + "/" + path + s),
+                    null
+                )
+                if (path != "") contentResolver.notifyChange(
+                    Uri.parse("content://" + SharedPrefsProvider.AUTHORITY + "/pref/" + path + s),
+                    null
+                )
             }
-            contentResolver.notifyChange(Uri.parse("content://" + SharedPrefsProvider.AUTHORITY + "/" + path + s), null)
-            if (path != "") contentResolver.notifyChange(Uri.parse("content://" + SharedPrefsProvider.AUTHORITY + "/pref/" + path + s), null)
-        }
-        PrefsUtils.mSharedPreferences?.registerOnSharedPreferenceChangeListener(mPreferenceChangeListener)
+        PrefsUtils.mSharedPreferences?.registerOnSharedPreferenceChangeListener(
+            mPreferenceChangeListener
+        )
         PrefsHelpers.fixPermissionsAsync(applicationContext)
         try {
-            fileObserver = object : FileObserver(File(PrefsUtils.sharedPrefsPath.toString()), CLOSE_WRITE) {
-                override fun onEvent(event: Int, path: String?) {
-                    PrefsHelpers.fixPermissionsAsync(applicationContext)
+            fileObserver =
+                object : FileObserver(File(PrefsUtils.sharedPrefsPath.toString()), CLOSE_WRITE) {
+                    override fun onEvent(event: Int, path: String?) {
+                        PrefsHelpers.fixPermissionsAsync(applicationContext)
+                    }
                 }
-            }
             fileObserver?.startWatching()
         } catch (t: Throwable) {
             Log.e("prefs", "Failed to start FileObserver!")
         }
     }
-
     private fun checkLSPosed() {
-        if (!isModuleActive()) {
+        val checkState = checked()
+        if (checkState) {
+            if (!isModuleActive()) {
+                Toast.makeText(this, "模块未激活请激活后使用哦！", Toast.LENGTH_SHORT).show()
+                exitProcess(0)
+            }
+        }else{
             Toast.makeText(this, "模块未激活请激活后使用哦！", Toast.LENGTH_SHORT).show()
             exitProcess(0)
         }
