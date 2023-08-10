@@ -53,4 +53,6 @@
 
     <string name="clock_seconds">时间显秒</string>
     <string name="clock_seconds_summary">为状态栏时间开启HH::MM::SS显示样式。</string>
+
+    <string name="hide_icon">隐藏桌面图标</string>
 </resources>
