@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.preference.Preference
 import com.xlp.verixsettings.R
+import com.xlp.verixsettings.R.xml.prefs_charge
 import com.xlp.verixsettings.ui.base.BaseAppCompatActivity
 import com.xlp.verixsettings.ui.base.BasePreferenceFragment
 import com.xlp.verixsettings.utils.execShell
@@ -23,7 +24,7 @@ class ChargeActivity : BaseAppCompatActivity() {
         }
 
         override fun getContentResId(): Int {
-            return R.xml.prefs_charge
+            return prefs_charge
         }
 
         override fun onPreferenceChange(preference: Preference, newValue: Any?): Boolean {

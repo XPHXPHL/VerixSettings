@@ -3,6 +3,7 @@ package com.xlp.verixsettings.ui
 import androidx.fragment.app.Fragment
 import androidx.preference.Preference
 import com.xlp.verixsettings.R
+import com.xlp.verixsettings.R.xml.prefs_ui
 import com.xlp.verixsettings.ui.base.BaseAppCompatActivity
 import com.xlp.verixsettings.ui.base.BasePreferenceFragment
 import com.xlp.verixsettings.utils.execShell
@@ -22,7 +23,7 @@ class UiActivity : BaseAppCompatActivity(){
         }
 
         override fun getContentResId(): Int {
-            return R.xml.prefs_ui
+            return prefs_ui
         }
 
         override fun onPreferenceChange(preference: Preference, newValue: Any?): Boolean {
@@ -36,4 +37,4 @@ class UiActivity : BaseAppCompatActivity(){
             return true
         }
     }
-    }
+}
