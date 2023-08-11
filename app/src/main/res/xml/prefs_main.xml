@@ -4,22 +4,22 @@
     <PreferenceCategory>
         <Preference android:title="@string/Vibrator">
             <intent
-                android:targetClass="com.xlp.verixsettings.ui.VibratorActivity"
+                android:targetClass="com.xlp.verixsettings.ui.pages.VibratorActivity"
                 android:targetPackage="com.xlp.verixsettings" />
         </Preference>
         <Preference android:title="@string/Charge">
             <intent
-                android:targetClass="com.xlp.verixsettings.ui.ChargeActivity"
+                android:targetClass="com.xlp.verixsettings.ui.pages.ChargeActivity"
                 android:targetPackage="com.xlp.verixsettings" />
         </Preference>
         <Preference android:title="@string/Ui">
             <intent
-                android:targetClass="com.xlp.verixsettings.ui.UiActivity"
+                android:targetClass="com.xlp.verixsettings.ui.pages.UiActivity"
                 android:targetPackage="com.xlp.verixsettings" />
         </Preference>
         <Preference android:title="@string/Other">
             <intent
-                android:targetClass="com.xlp.verixsettings.ui.OtherActivity"
+                android:targetClass="com.xlp.verixsettings.ui.pages.OtherActivity"
                 android:targetPackage="com.xlp.verixsettings" />
         </Preference>
         <PreferenceCategory androidprv:title="@string/about_us" />

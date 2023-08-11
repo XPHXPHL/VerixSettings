@@ -56,19 +56,19 @@
 
 
         <activity
-            android:name=".ui.UiActivity"
+            android:name=".ui.pages.UiActivity"
             android:label="@string/Ui" />
         <activity
-            android:name=".ui.VibratorActivity"
+            android:name=".ui.pages.VibratorActivity"
             android:label="@string/Vibrator" />
         <activity
-            android:name=".ui.ChargeActivity"
+            android:name=".ui.pages.ChargeActivity"
             android:label="@string/Charge" />
         <activity
-            android:name=".ui.FingerPrintActivity"
+            android:name=".ui.pages.FingerPrintActivity"
             android:label="@string/Fingerprint" />
         <activity
-            android:name=".ui.OtherActivity"
+            android:name=".ui.pages.OtherActivity"
             android:label="@string/Other" />
     </application>
 </manifest>

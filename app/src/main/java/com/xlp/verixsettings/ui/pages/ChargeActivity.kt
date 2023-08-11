@@ -1,4 +1,4 @@
-package com.xlp.verixsettings.ui
+package com.xlp.verixsettings.ui.pages
 
 import android.widget.Toast
 import androidx.fragment.app.Fragment

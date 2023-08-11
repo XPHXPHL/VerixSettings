@@ -1,4 +1,4 @@
-package com.xlp.verixsettings.ui
+package com.xlp.verixsettings.ui.pages
 
 import androidx.fragment.app.Fragment
 import androidx.preference.Preference
