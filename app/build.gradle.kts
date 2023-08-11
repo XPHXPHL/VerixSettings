@@ -15,7 +15,7 @@ android {
         minSdk = 33
         targetSdk = 33
         versionCode = 1
-        versionName = "1.2"
+        versionName = "1.3.1"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -60,7 +60,7 @@ android {
         }
         applicationVariants.all {
             outputs.all {
-                (this as BaseVariantOutputImpl).outputFileName = "VerixSettings-$versionName($versionCode)-$name.apk"
+                (this as BaseVariantOutputImpl).outputFileName = "VerixSettings-$versionName-$name.apk"
             }
         }
     }

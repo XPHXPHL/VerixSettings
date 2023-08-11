@@ -12,6 +12,11 @@
                 android:targetClass="com.xlp.verixsettings.ui.pages.ChargeActivity"
                 android:targetPackage="com.xlp.verixsettings" />
         </Preference>
+        <Preference android:title="@string/Fingerprint">
+            <intent
+                android:targetClass="com.xlp.verixsettings.ui.pages.FingerPrintActivity"
+                android:targetPackage="com.xlp.verixsettings" />
+        </Preference>
         <Preference android:title="@string/Ui">
             <intent
                 android:targetClass="com.xlp.verixsettings.ui.pages.UiActivity"
