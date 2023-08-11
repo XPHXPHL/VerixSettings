@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <application
         android:name=".Application"
@@ -70,5 +71,8 @@
         <activity
             android:name=".ui.pages.OtherActivity"
             android:label="@string/Other" />
+        <activity
+            android:name=".ui.pages.PackageActivity"
+            android:label="@string/Package" />
     </application>
 </manifest>

@@ -13,9 +13,10 @@
 
     <string name="Vibrator">震动专区</string>
     <string name="Ui">Ui界面专区</string>
-    <string name="Charge">充电设定</string>
+    <string name="Charge">充电设定专区</string>
     <string name="Fingerprint">指纹专区</string>
     <string name="Other">其他功能专区</string>
+    <string name="Package">系统安装器专区</string>
     <string name="Modules">模块状态和帮助</string>
 
     <string name="app_shade">软件启动遮罩</string>
@@ -55,4 +56,11 @@
     <string name="clock_seconds_summary">为状态栏时间开启HH::MM::SS显示样式。</string>
 
     <string name="hide_icon">隐藏桌面图标</string>
+
+    <string name="silent_install">静默安装</string>
+    <string name="silent_install_summary">跳过点击安装才能安装软件—来自Mr.Monxing。</string>
+
+    <string name="skip_virus_check_time">跳过病毒检测功能</string>
+    <string name="skip_virus_check_time_summary">去除烦人的病毒检测功能(请慎重开启)。</string>
+
 </resources>

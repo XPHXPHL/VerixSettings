@@ -12,10 +12,10 @@ android {
     namespace = "com.xlp.verixsettings"
     defaultConfig {
         applicationId = namespace
-        minSdk = 33
+        minSdk = 30
         targetSdk = 33
         versionCode = 1
-        versionName = "1.3.1"
+        versionName = "1.4"
         vectorDrawables {
             useSupportLibrary = true
         }

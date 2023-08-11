@@ -3,6 +3,8 @@ package com.xlp.verixsettings.hooks
 import com.xlp.verixsettings.BuildConfig
 import com.xlp.verixsettings.hooks.modules.android.HookAndroid.forcedScreenCapture
 import com.xlp.verixsettings.hooks.modules.android.HookAndroid.gameFps
+import com.xlp.verixsettings.hooks.modules.packageinstaller.HookPackageInstaller.silentInstall
+import com.xlp.verixsettings.hooks.modules.packageinstaller.HookPackageInstaller.skipVirusCheckTime
 import com.xlp.verixsettings.hooks.modules.settings.HookSettings.cipherDiskVib
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.appShade
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.backVib
@@ -70,6 +72,10 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
             }
             "com.flyme.systemuiex" -> {
                 forcedScreenCapture2(lpparam)
+            }
+            "com.android.packageinstaller" -> {
+                silentInstall(lpparam)
+                skipVirusCheckTime(lpparam)
             }
         }
     }

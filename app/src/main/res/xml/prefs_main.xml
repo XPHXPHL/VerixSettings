@@ -7,11 +7,6 @@
                 android:targetClass="com.xlp.verixsettings.ui.pages.VibratorActivity"
                 android:targetPackage="com.xlp.verixsettings" />
         </Preference>
-        <Preference android:title="@string/Charge">
-            <intent
-                android:targetClass="com.xlp.verixsettings.ui.pages.ChargeActivity"
-                android:targetPackage="com.xlp.verixsettings" />
-        </Preference>
         <Preference android:title="@string/Fingerprint">
             <intent
                 android:targetClass="com.xlp.verixsettings.ui.pages.FingerPrintActivity"
@@ -22,9 +17,19 @@
                 android:targetClass="com.xlp.verixsettings.ui.pages.UiActivity"
                 android:targetPackage="com.xlp.verixsettings" />
         </Preference>
+        <Preference android:title="@string/Charge">
+            <intent
+                android:targetClass="com.xlp.verixsettings.ui.pages.ChargeActivity"
+                android:targetPackage="com.xlp.verixsettings" />
+        </Preference>
         <Preference android:title="@string/Other">
             <intent
                 android:targetClass="com.xlp.verixsettings.ui.pages.OtherActivity"
+                android:targetPackage="com.xlp.verixsettings" />
+        </Preference>
+        <Preference android:title="@string/Package">
+            <intent
+                android:targetClass="com.xlp.verixsettings.ui.pages.PackageActivity"
                 android:targetPackage="com.xlp.verixsettings" />
         </Preference>
         <PreferenceCategory androidprv:title="@string/about_us" />
