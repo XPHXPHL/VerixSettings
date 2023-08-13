@@ -1,32 +1,34 @@
-package com.xlp.verixsettings.utils
+package com.xlp.verixsettings.utils;
 
-import java.util.HashMap
-import java.util.LinkedHashSet
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-class PrefsMap : HashMap<String, Any>() {
+public class PrefsMap<K, V> extends HashMap<K, V> {
 
-    fun getObject(key: String, defValue: Any): Any {
-        return getOrDefault(key, defValue)
+    public Object getObject(String key, Object defValue) {
+        return get(key) == null ? defValue : get(key);
     }
 
-    fun getInt(key: String, defValue: Int): Int {
-        return this[key] as? Int ?: defValue
+    public int getInt(String key, int defValue) {
+        return get(key) == null ? defValue : (Integer) get(key);
     }
 
-    fun getString(key: String, defValue: String): String {
-        return this[key] as? String ?: defValue
+    public String getString(String key, String defValue) {
+        return get(key) == null ? defValue : (String) get(key);
     }
 
-    fun getStringAsInt(key: String, defValue: Int): Int {
-        return (this[key] as? String)?.toIntOrNull() ?: defValue
+    public int getStringAsInt(String key, int defValue) {
+        return get(key) == null ? defValue : Integer.parseInt((String) get(key));
     }
 
-    @Suppress("UNCHECKED_CAST")
-    fun getStringSet(key: String): Set<String> {
-        return this[key] as? Set<String> ?: LinkedHashSet()
+    @SuppressWarnings("unchecked")
+    public Set<String> getStringSet(String key) {
+        return get(key) == null ? new LinkedHashSet<>() : (Set<String>) get(key);
     }
 
-    fun getBoolean(key: String): Boolean {
-        return this[key] as? Boolean ?: false
+    public boolean getBoolean(String key) {
+        return get(key) != null && (Boolean) get(key);
     }
+
 }
