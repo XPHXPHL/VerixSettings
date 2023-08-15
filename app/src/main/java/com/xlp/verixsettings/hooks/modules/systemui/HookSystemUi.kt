@@ -18,7 +18,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 object HookSystemUi {
     fun blur(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("blur_enabled")) {
-            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking Blur")
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::blur")
             val targetClass = XposedHelpers.findClass(
                 "com.android.systemui.statusbar.notification.row.ActivatableNotificationView",
                 lpparam.classLoader
@@ -39,7 +39,7 @@ object HookSystemUi {
 
     fun faceVib(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("face_vibrator")) {
-            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking face unlocked successfully vibrate")
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::faceVib")
             val targetClass = XposedHelpers.findClass(
                 "com.flyme.systemui.facerecognition.FaceRecognitionAnimationView",
                 lpparam.classLoader
@@ -50,6 +50,7 @@ object HookSystemUi {
 
     fun backVib(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("back_vibrator")) {
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::backVib")
             val targetClass = XposedHelpers.findClass(
                 "com.flyme.systemui.navigationbar.gestural.EdgeBackView",
                 lpparam.classLoader
@@ -61,6 +62,7 @@ object HookSystemUi {
 
     fun fingerVib(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("finger_vibrator")) {
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::fingerVib")
             val targetClass = XposedHelpers.findClass(
                 "com.android.keyguard.KeyguardUpdateMonitor",
                 lpparam.classLoader
@@ -71,6 +73,7 @@ object HookSystemUi {
 
     fun fingerUnlock(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("finger_unlock")) {
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::fingerUnlock")
             val targetClass = XposedHelpers.findClass(
                 "com.android.keyguard.KeyguardUpdateMonitor",
                 lpparam.classLoader
@@ -81,6 +84,7 @@ object HookSystemUi {
 
     fun batteryProtect(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("battery_protect")) {
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::batteryProtect")
             val targetClass = XposedHelpers.findClass(
                 "com.android.flyme.statusbar.battery.FlymeBatteryMeterView",
                 lpparam.classLoader
@@ -89,8 +93,9 @@ object HookSystemUi {
         }
     }
 
-    fun appShade(lpparam: LoadPackageParam){
-        if (mPrefsMap.getBoolean("app_shade")){
+    fun appShade(lpparam: LoadPackageParam) {
+        if (mPrefsMap.getBoolean("app_shade")) {
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::appShade")
             val targetClass = XposedHelpers.findClass(
                 "com.android.wm.shell.startingsurface.StartingWindowController",
                 lpparam.classLoader
@@ -99,11 +104,12 @@ object HookSystemUi {
         }
     }
 
-    fun clipboardEditor(lpparam: LoadPackageParam){
+    fun clipboardEditor(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("clipboard_editor")) {
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::clipboardEditor")
             val targetClass = XposedHelpers.findClass(
-            "com.android.systemui.clipboardoverlay.ClipboardListener",
-            lpparam.classLoader,
+                "com.android.systemui.clipboardoverlay.ClipboardListener",
+                lpparam.classLoader,
             )
             hookClipboardEditor(targetClass)
         }
@@ -131,7 +137,7 @@ object HookSystemUi {
             object : XC_MethodHook() {
                 override fun afterHookedMethod(param: MethodHookParam) {
                     super.afterHookedMethod(param)
-                    vibratorUtils(param,31021)
+                    vibratorUtils(param, 31021)
                 }
             }
         )
@@ -144,7 +150,7 @@ object HookSystemUi {
             object : XC_MethodHook() {
                 override fun afterHookedMethod(param: MethodHookParam) {
                     super.afterHookedMethod(param)
-                    vibratorUtils(param,31021)
+                    vibratorUtils(param, 31021)
                 }
             }
         )
@@ -157,7 +163,7 @@ object HookSystemUi {
             object : XC_MethodHook() {
                 override fun afterHookedMethod(param: MethodHookParam) {
                     super.afterHookedMethod(param)
-                    vibratorUtils(param,31021)
+                    vibratorUtils(param, 31021)
 
                 }
             }
@@ -197,16 +203,22 @@ object HookSystemUi {
                     val level = param?.args?.get(0) as Int
                     val pluggedIn = param.args?.get(1) as Boolean
                     if (pluggedIn && level >= 91) {
-                        writeFileNode("/sys/class/power_supply/battery/battery_charging_enabled","0")
+                        writeFileNode(
+                            "/sys/class/power_supply/battery/battery_charging_enabled",
+                            "0"
+                        )
                     } else {
-                        writeFileNode("/sys/class/power_supply/battery/battery_charging_enabled","1")
+                        writeFileNode(
+                            "/sys/class/power_supply/battery/battery_charging_enabled",
+                            "1"
+                        )
                     }
                 }
             }
         )
     }
 
-    private fun hookAppShade(clazz: Class<*>){
+    private fun hookAppShade(clazz: Class<*>) {
         XposedHelpers.findAndHookMethod(
             clazz,
             "lambda\$addStartingWindow$0\$com-android-wm-shell-startingsurface-StartingWindowController",
@@ -229,7 +241,8 @@ object HookSystemUi {
                     )
                 }
             })
-        }
+    }
+
     private fun hookClipboardEditor(clazz: Class<*>) {
         XposedHelpers.findAndHookMethod(
             clazz,

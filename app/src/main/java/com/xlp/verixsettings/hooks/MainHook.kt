@@ -47,9 +47,12 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
             }
         }
     }
+
     override fun handleLoadPackage(lpparam: XC_LoadPackage.LoadPackageParam?) {
-        when (lpparam?.packageName){
+        if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hook Starting!")
+        when (lpparam?.packageName) {
             "com.android.systemui" -> {
+                if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hook Systemui succeed!")
                 blur(lpparam)
                 backVib(lpparam)
                 faceVib(lpparam)
@@ -60,26 +63,37 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit {
                 clipboardEditor(lpparam)
 
             }
+
             "com.android.settings" -> {
+                if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hook Settings succeed!")
                 cipherDiskVib(lpparam)
             }
+
             "com.xlp.verixsettings" -> {
+                if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hook verixsettings succeed!")
                 hookCheckLSPosed(lpparam)
             }
-            "android" ->{
+
+            "android" -> {
+                if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hook android succeed!")
                 gameFps(lpparam)
                 forcedScreenCapture(lpparam)
             }
+
             "com.flyme.systemuiex" -> {
+                if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hook systemuiex succeed!")
                 forcedScreenCapture2(lpparam)
             }
+
             "com.android.packageinstaller" -> {
+                if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hook packageinstaller succeed!")
                 silentInstall(lpparam)
                 skipVirusCheckTime(lpparam)
             }
         }
     }
-    private fun hookCheckLSPosed(lpparam: XC_LoadPackage.LoadPackageParam){
+
+    private fun hookCheckLSPosed(lpparam: XC_LoadPackage.LoadPackageParam) {
         XposedHelpers.findAndHookMethod(
             "com.xlp.verixsettings.ui.MainActivity",
             lpparam.classLoader,

@@ -1,8 +1,11 @@
 package com.xlp.verixsettings.hooks.modules.settings
 
 import android.annotation.SuppressLint
+import com.xlp.verixsettings.BuildConfig
 import com.xlp.verixsettings.hooks.mPrefsMap
+import com.xlp.verixsettings.utils.Init.TAG
 import de.robv.android.xposed.XC_MethodHook
+import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 
@@ -10,6 +13,7 @@ object HookSettings {
 
     fun cipherDiskVib(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("cipher_disk_vibrator")) {
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSettings::cipherDiskVib")
             val targetClass = XposedHelpers.findClass(
                 "com.meizu.settings.widget.LockDigitView",
                 lpparam.classLoader
@@ -18,7 +22,7 @@ object HookSettings {
         }
     }
 
-    private fun hookCipherDiskVib(clazz: Class<*>){
+    private fun hookCipherDiskVib(clazz: Class<*>) {
         XposedHelpers.findAndHookMethod(
             clazz,
             "detectAndAddHit",

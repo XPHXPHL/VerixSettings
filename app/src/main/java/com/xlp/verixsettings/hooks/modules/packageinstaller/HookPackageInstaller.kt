@@ -2,14 +2,18 @@ package com.xlp.verixsettings.hooks.modules.packageinstaller
 
 import android.annotation.SuppressLint
 import android.content.Context
+import com.xlp.verixsettings.BuildConfig
 import com.xlp.verixsettings.hooks.mPrefsMap
+import com.xlp.verixsettings.utils.Init.TAG
 import de.robv.android.xposed.XC_MethodReplacement
+import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 
 object HookPackageInstaller {
     fun silentInstall(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("silent_install")) {
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookPackageInstaller::silentInstall")
             XposedHelpers.findAndHookMethod(
                 "com.meizu.permissioncommon.AppInfoUtil",
                 lpparam.classLoader,
@@ -20,8 +24,10 @@ object HookPackageInstaller {
             )
         }
     }
-    fun skipVirusCheckTime(lpparam: LoadPackageParam){
+
+    fun skipVirusCheckTime(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("skip_virus_check_time")) {
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookPackageInstaller::skipVirusCheckTime")
             XposedHelpers.findAndHookMethod(
                 "com.android.packageinstaller.FlymePackageInstallerActivity",
                 lpparam.classLoader,
