@@ -71,5 +71,6 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.preference)
     implementation(libs.material)
+    implementation(project(":blockmiui"))
 }
 

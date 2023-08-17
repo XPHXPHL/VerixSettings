@@ -19,4 +19,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "VerixSettings"
 include(":app")
- 
+include(":app", ":blockmiui")
