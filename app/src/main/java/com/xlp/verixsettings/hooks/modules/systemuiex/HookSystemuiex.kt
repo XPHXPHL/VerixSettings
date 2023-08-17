@@ -12,19 +12,12 @@ object HookSystemuiex {
     fun forcedScreenCapture2(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("forced_screen_capture")) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemuiex::forcedScreenCapture2")
-            val targetClass = XposedHelpers.findClass(
+            XposedHelpers.findAndHookMethod(
                 "android.view.SurfaceControl\$ScreenshotHardwareBuffer",
-                lpparam.classLoader
+                lpparam.classLoader,
+                "containsSecureLayers",
+                XC_MethodReplacement.returnConstant(false)
             )
-            hookForcedScreenCapture(targetClass)
         }
-    }
-
-    private fun hookForcedScreenCapture(clazz: Class<*>) {
-        XposedHelpers.findAndHookMethod(
-            clazz,
-            "containsSecureLayers",
-            XC_MethodReplacement.returnConstant(false)
-        )
     }
 }

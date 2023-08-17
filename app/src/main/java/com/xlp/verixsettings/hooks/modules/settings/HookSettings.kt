@@ -10,33 +10,25 @@ import de.robv.android.xposed.XposedHelpers
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 
 object HookSettings {
-
     fun cipherDiskVib(lpparam: LoadPackageParam) {
         if (mPrefsMap.getBoolean("cipher_disk_vibrator")) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSettings::cipherDiskVib")
-            val targetClass = XposedHelpers.findClass(
+            XposedHelpers.findAndHookMethod(
                 "com.meizu.settings.widget.LockDigitView",
-                lpparam.classLoader
-            )
-            hookCipherDiskVib(targetClass)
-        }
-    }
-
-    private fun hookCipherDiskVib(clazz: Class<*>) {
-        XposedHelpers.findAndHookMethod(
-            clazz,
-            "detectAndAddHit",
-            Float::class.java,
-            Float::class.java,
-            Boolean::class.java,
-            object : XC_MethodHook() {
-                @SuppressLint("WrongConstant")
-                override fun beforeHookedMethod(param: MethodHookParam?) {
-                    super.beforeHookedMethod(param)
-                    val targetObject = param?.thisObject
-                    XposedHelpers.setBooleanField(targetObject, "mEnableHapticFeedback", true)
+                lpparam.classLoader,
+                "detectAndAddHit",
+                Float::class.java,
+                Float::class.java,
+                Boolean::class.java,
+                object : XC_MethodHook() {
+                    @SuppressLint("WrongConstant")
+                    override fun beforeHookedMethod(param: MethodHookParam?) {
+                        super.beforeHookedMethod(param)
+                        val targetObject = param?.thisObject
+                        XposedHelpers.setBooleanField(targetObject, "mEnableHapticFeedback", true)
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 }
