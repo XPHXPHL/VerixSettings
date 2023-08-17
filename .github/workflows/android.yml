@@ -54,11 +54,11 @@ jobs:
       - name: Upload Release APK
         uses: actions/upload-artifact@v3.1.2
         with:
-          name: Miui_XXL-Release
+          name: VerixSetting-Release
           path: "app/build/outputs/apk/release/*.apk"
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v3.1.2
         with:
-          name: Miui_XXL-Debug
+          name: VerixSetting-Debug
           path: "app/build/outputs/apk/debug/*.apk"
