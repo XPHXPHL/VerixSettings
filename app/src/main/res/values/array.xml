@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="xposedscope">
-        <item>com.android.systemui</item>
+    <string-array name="xposed_scope">
         <item>android</item>
-        <item>com.flyme.systemuiex</item>
         <item>com.android.settings</item>
-        <item>com.android.packageinstaller</item>
+        <item>com.android.systemui</item>
+        <item>com.android.thememanager</item>
+        <item>com.miui.gallery</item>
+        <item>com.miui.guardprovider</item>
+        <item>com.miui.home</item>
+        <item>com.miui.mediaeditor</item>
+        <item>com.miui.packageinstaller</item>
+        <item>com.miui.personalassistant</item>
+        <item>com.miui.powerkeeper</item>
+        <item>com.miui.screenshot</item>
+        <item>com.miui.securitycenter</item>
     </string-array>
 </resources>

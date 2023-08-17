@@ -19,19 +19,17 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--repackageclasses "XLP"
--obfuscationdictionary dict.txt
--classobfuscationdictionary dict.txt
--packageobfuscationdictionary dict.txt
 
--keep class com.xlp.verixsettings.hooks.MainHook {
+-keep class com.yuk.miuiXXL.hooks.MainHook {
     <init>();
-}
--keep class com.xlp.verixsettings.ui.MainActivity {
-    isModuleActive();
 }
 
 -assumenosideeffects class kotlin.jvm.internal.Intrinsics {
     public static void check*(...);
     public static void throw*(...);
 }
+
+-keep class miui.drm.** { *; }
+
+-allowaccessmodification
+-overloadaggressively
