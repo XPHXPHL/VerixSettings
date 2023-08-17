@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:androidprv="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory>
+        <Preference android:title="@string/Vibrator">
+            <intent
+                android:targetClass="com.xlp.verixsettings.ui.pages.VibratorActivity"
+                android:targetPackage="com.xlp.verixsettings" />
+        </Preference>
+        <Preference android:title="@string/Fingerprint">
+            <intent
+                android:targetClass="com.xlp.verixsettings.ui.pages.FingerPrintActivity"
+                android:targetPackage="com.xlp.verixsettings" />
+        </Preference>
+        <Preference android:title="@string/Ui">
+            <intent
+                android:targetClass="com.xlp.verixsettings.ui.pages.UiActivity"
+                android:targetPackage="com.xlp.verixsettings" />
+        </Preference>
+        <Preference android:title="@string/Charge">
+            <intent
+                android:targetClass="com.xlp.verixsettings.ui.pages.ChargeActivity"
+                android:targetPackage="com.xlp.verixsettings" />
+        </Preference>
+        <Preference android:title="@string/Other">
+            <intent
+                android:targetClass="com.xlp.verixsettings.ui.pages.OtherActivity"
+                android:targetPackage="com.xlp.verixsettings" />
+        </Preference>
+        <Preference android:title="@string/Package">
+            <intent
+                android:targetClass="com.xlp.verixsettings.ui.pages.PackageActivity"
+                android:targetPackage="com.xlp.verixsettings" />
+        </Preference>
+        <PreferenceCategory androidprv:title="@string/about_us" />
+        <Preference
+            android:icon="@drawable/about_xph"
+            android:title="@string/about_xph">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/XPHXPHL" />
+        </Preference>
+        <Preference
+            android:icon="@drawable/about_yukonga"
+            android:title="@string/about_yukonga">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/YuKongA" />
+        </Preference>
+        <Preference
+            android:icon="@drawable/about_ex3124"
+            android:title="@string/about_ex3124">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/EX3124" />
+        </Preference>
+        <Preference
+            android:icon="@drawable/about_creamdraft"
+            android:title="@string/about_creamdraft">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/Cheng171" />
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>

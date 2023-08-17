@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory>
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="finger_unlock"
+            android:summary="@string/finger_unlock_summary"
+            android:title="@string/finger_unlock" />
+    </PreferenceCategory>
+</PreferenceScreen>

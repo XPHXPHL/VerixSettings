@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory>
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="blur_enabled"
+            android:summary="@string/blur_enabled_summary"
+            android:title="@string/blur_enabled" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="clock_seconds"
+            android:summary="@string/clock_seconds_summary"
+            android:title="@string/clock_seconds" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="app_shade"
+            android:summary="@string/app_shade_summary"
+            android:title="@string/app_shade" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="clipboard_editor"
+            android:summary="@string/clipboard_editor_summary"
+            android:title="@string/clipboard_editor" />
+    </PreferenceCategory>
+</PreferenceScreen>

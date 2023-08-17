@@ -2,7 +2,6 @@
 
 pluginManagement {
     repositories {
-        maven("https://api.xposed.info/")
         google()
         mavenCentral()
         gradlePluginPortal()
@@ -12,12 +11,12 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        maven("https://api.xposed.info/")
         google()
         mavenCentral()
-        gradlePluginPortal()
+        maven("https://api.xposed.info/")
     }
 }
 
-include(":app", ":blockmiui")
-rootProject.name = ("Miui_XXL")
+rootProject.name = "VerixSettings"
+include(":app")
+ 
