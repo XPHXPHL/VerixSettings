@@ -27,9 +27,6 @@
 -keep class com.xlp.verixsettings.hooks.MainHook {
     <init>();
 }
--keep class com.xlp.verixsettings.ui.MainActivity {
-    isModuleActive();
-}
 
 -assumenosideeffects class kotlin.jvm.internal.Intrinsics {
     public static void check*(...);

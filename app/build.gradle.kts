@@ -23,11 +23,6 @@ android {
     buildFeatures {
         buildConfig = true
     }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.1.1"
-    }
-
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
@@ -48,9 +43,6 @@ android {
     androidResources {
         additionalParameters += arrayOf("--allow-reserved-package-id", "--package-id", "0x78")
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
-    }
     packaging {
         resources {
             excludes += "**"
@@ -62,6 +54,14 @@ android {
             outputs.all {
                 (this as BaseVariantOutputImpl).outputFileName = "VerixSettings-$versionName-$name.apk"
             }
+        }
+    }
+}
+
+kotlin {
+    sourceSets.all {
+        languageSettings {
+            languageVersion = "2.0"
         }
     }
 }

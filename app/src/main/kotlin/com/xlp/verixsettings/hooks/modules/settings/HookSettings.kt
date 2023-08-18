@@ -2,8 +2,8 @@ package com.xlp.verixsettings.hooks.modules.settings
 
 import android.annotation.SuppressLint
 import com.xlp.verixsettings.BuildConfig
-import com.xlp.verixsettings.hooks.mPrefsMap
 import com.xlp.verixsettings.utils.Init.TAG
+import com.xlp.verixsettings.utils.getBoolean
 import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
@@ -11,7 +11,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 
 object HookSettings {
     fun cipherDiskVib(lpparam: LoadPackageParam) {
-        if (mPrefsMap.getBoolean("cipher_disk_vibrator")) {
+        if (getBoolean("cipher_disk_vibrator", false)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSettings::cipherDiskVib")
             XposedHelpers.findAndHookMethod(
                 "com.meizu.settings.widget.LockDigitView",
