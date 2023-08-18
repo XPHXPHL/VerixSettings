@@ -54,25 +54,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity-alias>
-
-
-        <activity
-            android:name=".ui.pages.UiActivity"
-            android:label="@string/Ui" />
-        <activity
-            android:name=".ui.pages.VibratorActivity"
-            android:label="@string/Vibrator" />
-        <activity
-            android:name=".ui.pages.ChargeActivity"
-            android:label="@string/Charge" />
-        <activity
-            android:name=".ui.pages.FingerPrintActivity"
-            android:label="@string/Fingerprint" />
-        <activity
-            android:name=".ui.pages.OtherActivity"
-            android:label="@string/Other" />
-        <activity
-            android:name=".ui.pages.PackageActivity"
-            android:label="@string/Package" />
     </application>
 </manifest>

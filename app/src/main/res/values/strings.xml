@@ -11,13 +11,11 @@
     <string name="about_creamdraft">CreamDraft</string>
     <string name="about_ex3124">EX3124</string>
 
-    <string name="Vibrator">震动专区</string>
-    <string name="Ui">Ui界面专区</string>
-    <string name="Charge">充电设定专区</string>
-    <string name="Fingerprint">指纹专区</string>
-    <string name="Other">其他功能专区</string>
-    <string name="Package">系统安装器专区</string>
-    <string name="Modules">模块状态和帮助</string>
+    <string name="systemui">系统界面</string>
+    <string name="settings">系统设置</string>
+    <string name="app_install">应用包管理组件</string>
+    <string name="Vibrator">系统震动</string>
+    <string name="Charge">充电设定</string>
 
     <string name="app_shade">软件启动遮罩</string>
     <string name="app_shade_summary">还原原生开启应用的遮罩功能—来自Ex3124。</string>
@@ -63,4 +61,20 @@
     <string name="skip_virus_check_time">跳过病毒检测功能</string>
     <string name="skip_virus_check_time_summary">去除烦人的病毒检测功能(请慎重开启)。</string>
 
+    <string name="android">系统框架</string>
+    <string name="need_reboot">本页功能开启以后需要重启手机</string>
+
+    <string name="tips">提示</string>
+    <string name="not_support">模块未激活，请激活模块后重试</string>
+    <string name="hide_desktop_icon">隐藏桌面图标</string>
+    <string name="done">确定</string>
+
+    <string name="reboot_system">重启系统</string>
+    <string name="reboot_system_summary">确定要重启系统么？</string>
+    <string name="restart_scope">重启作用域</string>
+    <string name="restart_scope_summary">确定要重启全部作用域么？</string>
+    <string name="restart_scope_finished">作用域重启完成</string>
+    <string name="cancel">取消</string>
+    <string name="backup">备份模块设置</string>
+    <string name="recovery">恢复模块设置</string>
 </resources>
