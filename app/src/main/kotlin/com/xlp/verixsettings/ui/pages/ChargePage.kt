@@ -9,6 +9,7 @@ import com.xlp.verixsettings.R.string.battery_protect
 import com.xlp.verixsettings.R.string.battery_protect_summary
 import com.xlp.verixsettings.R.string.hs_power
 import com.xlp.verixsettings.R.string.hs_power_summary
+import com.xlp.verixsettings.utils.execShell
 
 @BMPage("ChargePage", hideMenu = false)
 class ChargePage : BasePage() {
@@ -24,7 +25,13 @@ class ChargePage : BasePage() {
         )
         TextSummaryWithSwitch(
             TextSummaryV(textId = hs_power, tipsId = hs_power_summary),
-            SwitchV("hs_power")
+            SwitchV("hs_power", onClickListener = {
+                if (it) {
+                    execShell("echo 0 > /sys/class/power_supply/battery/battery_charging_enabled")
+                } else {
+                    execShell("echo 1 > /sys/class/power_supply/battery/battery_charging_enabled")
+                }
+            })
         )
     }
 }
