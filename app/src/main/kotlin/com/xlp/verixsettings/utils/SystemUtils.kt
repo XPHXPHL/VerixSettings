@@ -8,7 +8,7 @@ import de.robv.android.xposed.XC_MethodHook.MethodHookParam
 import de.robv.android.xposed.XposedHelpers
 
 @SuppressLint("WrongConstant")
-object SystemUtils  {
+object SystemUtils {
     fun vibratorUtils (param: MethodHookParam,effectId:Int){
         val mContext =
             XposedHelpers.getObjectField(param.thisObject, "mContext") as Context

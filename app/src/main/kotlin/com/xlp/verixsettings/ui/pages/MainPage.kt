@@ -115,10 +115,13 @@ class MainPage : BasePage() {
                     dismiss()
                 }
                 setRButton(R.string.done) {
-                    execShell("killall com.android.systemui")
-                    execShell("killall com.flyme.systemuiex")
-                    execShell("killall com.android.settings")
-                    execShell("killall com.android.packageinstaller")
+                    val command = arrayOf(
+                        "killall com.android.systemui",
+                        "killall com.flyme.systemuiex",
+                        "killall com.android.settings",
+                        "killall com.android.packageinstaller",
+                    )
+                    execShell(command)
                     Toast.makeText(
                         activity,
                         getString(restart_scope_finished),

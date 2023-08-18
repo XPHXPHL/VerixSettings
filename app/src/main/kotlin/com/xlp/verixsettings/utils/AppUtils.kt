@@ -1,28 +1,56 @@
 package com.xlp.verixsettings.utils
 
 import android.annotation.SuppressLint
+import java.io.BufferedReader
 import java.io.DataOutputStream
 import java.io.FileOutputStream
 import java.io.IOException
+import java.io.InputStreamReader
 
-/**
- * 执行 Shell 命令
- * @param command Shell 命令
- */
-fun execShell(command: String) {
-    try {
-        val p = Runtime.getRuntime().exec("su")
-        val outputStream = p.outputStream
-        val dataOutputStream = DataOutputStream(outputStream)
-        dataOutputStream.writeBytes(command)
-        dataOutputStream.flush()
-        dataOutputStream.close()
-        outputStream.close()
-    } catch (t: Throwable) {
-        t.printStackTrace()
+
+fun execShell(command: String): String {
+    var process: Process? = null
+    var reader: BufferedReader? = null
+    var `is`: InputStreamReader? = null
+    var os: DataOutputStream? = null
+    return try {
+        process = Runtime.getRuntime().exec("su")
+        `is` = InputStreamReader(process.inputStream)
+        reader = BufferedReader(`is`)
+        os = DataOutputStream(process.outputStream)
+        os.writeBytes(command.trimIndent())
+        os.writeBytes("\nexit\n")
+        os.flush()
+        var read: Int
+        val buffer = CharArray(4096)
+        val output = StringBuilder()
+        while (reader.read(buffer).also { read = it } > 0) output.appendRange(buffer, 0, read)
+        process.waitFor()
+        output.toString()
+    } catch (e: IOException) {
+        throw RuntimeException(e)
+    } catch (e: InterruptedException) {
+        throw RuntimeException(e)
+    } finally {
+        try {
+            os?.close()
+            `is`?.close()
+            reader?.close()
+            process?.destroy()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
     }
 }
 
+fun execShell(commands: Array<String>): String {
+    val stringBuilder = java.lang.StringBuilder()
+    for (command in commands) {
+        stringBuilder.append(execShell(command))
+        stringBuilder.append("\n")
+    }
+    return stringBuilder.toString()
+}
 fun writeFileNode(path: String, data: String): Boolean {
     var result: Boolean
     var fos: FileOutputStream? = null
