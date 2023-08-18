@@ -15,7 +15,7 @@ android {
         minSdk = 30
         targetSdk = 33
         versionCode = 1
-        versionName = "1.5R"
+        versionName = "1.6R"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -30,7 +30,7 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro","proguard-log.pro")
         }
     }
     compileOptions {
