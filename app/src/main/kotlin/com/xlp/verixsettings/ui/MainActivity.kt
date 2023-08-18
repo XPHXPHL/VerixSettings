@@ -7,6 +7,7 @@ import cn.fkj233.ui.activity.MIUIActivity
 import cn.fkj233.ui.dialog.MIUIDialog
 import com.xlp.verixsettings.R
 import com.xlp.verixsettings.R.string.not_support_device
+import com.xlp.verixsettings.R.string.not_support_root
 import com.xlp.verixsettings.ui.pages.AndroidPage
 import com.xlp.verixsettings.ui.pages.AppInstallPage
 import com.xlp.verixsettings.ui.pages.ChargePage
@@ -16,12 +17,14 @@ import com.xlp.verixsettings.ui.pages.SystemUiPage
 import com.xlp.verixsettings.ui.pages.VibratorPage
 import com.xlp.verixsettings.utils.BackupUtils
 import com.xlp.verixsettings.utils.CheckedModel.checked
+import com.xlp.verixsettings.utils.checkRoot
 import kotlin.system.exitProcess
 
 
 class MainActivity : MIUIActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         checkLSPosed()
+        checkedRoot()
         checkModel()
         super.onCreate(savedInstanceState)
     }
@@ -39,6 +42,21 @@ class MainActivity : MIUIActivity() {
             }.show()
         }
     }
+
+    private fun checkedRoot(){
+        val checkRootState = checkRoot()
+        if (!checkRootState){
+            MIUIDialog(this) {
+                setTitle(R.string.tips)
+                setMessage(not_support_root)
+                setCancelable(false)
+                setRButton(R.string.done) {
+                    exitProcess(0)
+                }
+            }.show()
+        }
+    }
+
     @Suppress("DEPRECATION")
     @SuppressLint("WorldReadableFiles")
     private fun checkLSPosed() {

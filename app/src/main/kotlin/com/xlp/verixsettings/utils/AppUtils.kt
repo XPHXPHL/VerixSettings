@@ -86,7 +86,15 @@ fun writeFileNode(path: String, data: String): Boolean {
         throw th
     }
 }
-
+fun checkRoot():Boolean{
+    return try {
+        val process:Process = Runtime.getRuntime().exec("su root")
+        val exitCode:Int = process.waitFor()
+        exitCode == 0
+    }catch (e:Exception){
+        false
+    }
+}
 @SuppressLint("PrivateApi")
 fun setProp(prop: String, state: String) {
     execShell("setprop $prop $state")
