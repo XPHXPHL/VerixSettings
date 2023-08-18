@@ -11,7 +11,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 
 object HookAndroid {
     fun forcedScreenCapture(lpparam: LoadPackageParam) {
-        if (!getBoolean("forced_screen_capture",false)) {
+        if (getBoolean("forced_screen_capture",true)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::forcedScreenCapture")
             XposedHelpers.findAndHookMethod(
                 "com.android.server.wm.WindowState",
@@ -23,7 +23,7 @@ object HookAndroid {
     }
 
     fun gameFps(lpparam: LoadPackageParam) {
-        if (!getBoolean("game_fps",false)) {
+        if (getBoolean("game_fps",true)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::gameFps")
             XposedHelpers.findAndHookMethod(
                 "com.android.server.wm.WindowState",

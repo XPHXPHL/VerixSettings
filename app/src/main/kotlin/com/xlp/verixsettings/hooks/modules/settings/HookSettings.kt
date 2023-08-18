@@ -11,7 +11,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 
 object HookSettings {
     fun cipherDiskVib(lpparam: LoadPackageParam) {
-        if (!getBoolean("cipher_disk_vibrator", false)) {
+        if (getBoolean("cipher_disk_vibrator", true)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSettings::cipherDiskVib")
             XposedHelpers.findAndHookMethod(
                 "com.meizu.settings.widget.LockDigitView",
