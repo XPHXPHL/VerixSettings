@@ -30,7 +30,7 @@ class VibratorPage : BasePage() {
         )
         TextSummaryWithSwitch(
             TextSummaryV(textId = finger_vibrator, tipsId = finger_vibrator_summary),
-            SwitchV("face_vibrator")
+            SwitchV("finger_vibrator")
         )
     }
 }

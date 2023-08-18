@@ -17,7 +17,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 
 object HookSystemUi {
     fun blur(lpparam: LoadPackageParam) {
-        if (getBoolean("blur_enabled", false)) {
+        if (!getBoolean("blur_enabled", false)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::blur")
             val targetClass = XposedHelpers.findClass(
                 "com.android.systemui.statusbar.notification.row.ActivatableNotificationView",
@@ -51,7 +51,7 @@ object HookSystemUi {
     }
 
     fun faceVib(lpparam: LoadPackageParam) {
-        if (getBoolean("face_vibrator", false)) {
+        if (!getBoolean("face_vibrator", false)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::faceVib")
             XposedHelpers.findAndHookMethod(
                 "com.flyme.systemui.facerecognition.FaceRecognitionAnimationView",
@@ -68,7 +68,7 @@ object HookSystemUi {
     }
 
     fun backVib(lpparam: LoadPackageParam) {
-        if (getBoolean("back_vibrator", false)) {
+        if (!getBoolean("back_vibrator", false)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::backVib")
             XposedHelpers.findAndHookMethod(
                 "com.flyme.systemui.navigationbar.gestural.EdgeBackView",
@@ -85,7 +85,7 @@ object HookSystemUi {
     }
 
     fun fingerVib(lpparam: LoadPackageParam) {
-        if (getBoolean("finger_vibrator", false)) {
+        if (!getBoolean("finger_vibrator", false)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::fingerVib")
             XposedHelpers.findAndHookMethod(
                 "com.android.keyguard.KeyguardUpdateMonitor",
@@ -104,7 +104,7 @@ object HookSystemUi {
     }
 
     fun fingerUnlock(lpparam: LoadPackageParam) {
-        if (getBoolean("finger_unlock", false)) {
+        if (!getBoolean("finger_unlock", false)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::fingerUnlock")
             XposedHelpers.findAndHookMethod(
                 "com.android.keyguard.KeyguardUpdateMonitor",
@@ -127,7 +127,7 @@ object HookSystemUi {
     }
 
     fun clipboardEditor(lpparam: LoadPackageParam) {
-        if (getBoolean("clipboard_editor", false)) {
+        if (!getBoolean("clipboard_editor", false)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::clipboardEditor")
             XposedHelpers.findAndHookMethod(
                 "com.android.systemui.clipboardoverlay.ClipboardListener",
@@ -151,7 +151,7 @@ object HookSystemUi {
     }
 
     fun batteryProtect(lpparam: LoadPackageParam) {
-        if (getBoolean("battery_protect", false)) {
+        if (!getBoolean("battery_protect", false)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::batteryProtect")
             XposedHelpers.findAndHookMethod(
                 "com.android.flyme.statusbar.battery.FlymeBatteryMeterView",
@@ -184,7 +184,7 @@ object HookSystemUi {
     }
 
     fun appShade(lpparam: LoadPackageParam) {
-        if (getBoolean("app_shade", false)) {
+        if (!getBoolean("app_shade", false)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookSystemUi::appShade")
             XposedHelpers.findAndHookMethod(
                 "com.android.wm.shell.startingsurface.StartingWindowController",

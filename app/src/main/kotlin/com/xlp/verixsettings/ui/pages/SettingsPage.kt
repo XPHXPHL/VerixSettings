@@ -24,7 +24,7 @@ class SettingsPage : BasePage() {
         )
         TextSummaryWithSwitch(
             TextSummaryV(textId = finger_unlock, tipsId = finger_unlock_summary),
-            SwitchV("cipher_disk_vibrator")
+            SwitchV("finger_unlock")
         )
     }
 }

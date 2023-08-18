@@ -12,7 +12,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 
 object HookPackageInstaller {
     fun silentInstall(lpparam: LoadPackageParam) {
-        if (getBoolean("silent_install", false)) {
+        if (!getBoolean("silent_install", false)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookPackageInstaller::silentInstall")
             XposedHelpers.findAndHookMethod(
                 "com.meizu.permissioncommon.AppInfoUtil",
@@ -26,7 +26,7 @@ object HookPackageInstaller {
     }
 
     fun skipVirusCheckTime(lpparam: LoadPackageParam) {
-        if (getBoolean("skip_virus_check_time", false)) {
+        if (!getBoolean("skip_virus_check_time", false)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookPackageInstaller::skipVirusCheckTime")
             XposedHelpers.findAndHookMethod(
                 "com.android.packageinstaller.FlymePackageInstallerActivity",
