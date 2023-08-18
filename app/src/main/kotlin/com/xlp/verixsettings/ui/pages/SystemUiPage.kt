@@ -13,6 +13,7 @@ import com.xlp.verixsettings.R.string.clipboard_editor
 import com.xlp.verixsettings.R.string.clipboard_editor_summary
 import com.xlp.verixsettings.R.string.clock_seconds
 import com.xlp.verixsettings.R.string.clock_seconds_summary
+import com.xlp.verixsettings.utils.execShell
 
 @BMPage("SystemUiPage", hideMenu = false)
 class SystemUiPage : BasePage() {
@@ -28,7 +29,13 @@ class SystemUiPage : BasePage() {
         )
         TextSummaryWithSwitch(
             TextSummaryV(textId = clock_seconds, tipsId = clock_seconds_summary),
-            SwitchV("clock_seconds")
+            SwitchV("clock_seconds", onClickListener = {
+                if (it){
+                    execShell("settings put secure clock_seconds 1")
+                }else{
+                    execShell("settings put secure clock_seconds 0")
+                }
+            })
         )
         TextSummaryWithSwitch(
             TextSummaryV(textId = app_shade, tipsId = app_shade_summary),
