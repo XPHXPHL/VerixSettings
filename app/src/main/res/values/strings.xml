@@ -66,6 +66,7 @@
 
     <string name="tips">提示</string>
     <string name="not_support">模块未激活，请激活模块后重试</string>
+    <string name="not_support_device">你的机型尚未适配哦请联系开发者进行适配哦！</string>
     <string name="hide_desktop_icon">隐藏桌面图标</string>
     <string name="done">确定</string>
 
