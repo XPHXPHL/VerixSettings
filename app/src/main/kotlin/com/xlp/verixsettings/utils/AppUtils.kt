@@ -51,6 +51,7 @@ fun execShell(commands: Array<String>): String {
     }
     return stringBuilder.toString()
 }
+
 fun writeFileNode(path: String, data: String): Boolean {
     var result: Boolean
     var fos: FileOutputStream? = null
@@ -84,15 +85,6 @@ fun writeFileNode(path: String, data: String): Boolean {
             }
         }
         throw th
-    }
-}
-fun checkRoot():Boolean{
-    return try {
-        val process:Process = Runtime.getRuntime().exec("su root")
-        val exitCode:Int = process.waitFor()
-        exitCode == 0
-    }catch (e:Exception){
-        false
     }
 }
 @SuppressLint("PrivateApi")
