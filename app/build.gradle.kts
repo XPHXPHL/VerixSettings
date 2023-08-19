@@ -13,7 +13,7 @@ android {
     namespace = "com.xlp.verixsettings"
     defaultConfig {
         applicationId = namespace
-        minSdk = 30
+        minSdk = 33
         targetSdk = 33
         versionCode = 114514
         versionName = "1.6R"
@@ -54,7 +54,7 @@ android {
         }
         applicationVariants.all {
             outputs.all {
-                (this as BaseVariantOutputImpl).outputFileName = "VerixSettings--$versionName-$name-$buildTime.apk"
+                (this as BaseVariantOutputImpl).outputFileName = "VerixSettings-$versionName-$name-$buildTime.apk"
             }
         }
     }
