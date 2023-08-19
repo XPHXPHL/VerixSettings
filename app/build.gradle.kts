@@ -8,14 +8,16 @@ plugins {
 }
 
 android {
+    val buildTime = System.currentTimeMillis()
     compileSdk = 33
     namespace = "com.xlp.verixsettings"
     defaultConfig {
         applicationId = namespace
         minSdk = 30
         targetSdk = 33
-        versionCode = 1
+        versionCode = 114514
         versionName = "1.6R"
+        buildConfigField("long", "BUILD_TIME", "$buildTime")
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -52,7 +54,7 @@ android {
         }
         applicationVariants.all {
             outputs.all {
-                (this as BaseVariantOutputImpl).outputFileName = "VerixSettings-$versionName-$name.apk"
+                (this as BaseVariantOutputImpl).outputFileName = "VerixSettings--$versionName-$name-$buildTime.apk"
             }
         }
     }

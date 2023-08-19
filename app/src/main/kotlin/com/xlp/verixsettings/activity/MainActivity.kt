@@ -12,6 +12,7 @@ import com.xlp.verixsettings.R.string.not_support_root
 import com.xlp.verixsettings.activity.pages.AndroidPage
 import com.xlp.verixsettings.activity.pages.AppInstallPage
 import com.xlp.verixsettings.activity.pages.ChargePage
+import com.xlp.verixsettings.activity.pages.EggsPages
 import com.xlp.verixsettings.activity.pages.MainPage
 import com.xlp.verixsettings.activity.pages.SettingsPage
 import com.xlp.verixsettings.activity.pages.SystemUiPage
@@ -84,6 +85,7 @@ class MainActivity : MIUIActivity() {
         registerPage(SettingsPage::class.java)
         registerPage(SystemUiPage::class.java)
         registerPage(VibratorPage::class.java)
+        registerPage(EggsPages::class.java)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

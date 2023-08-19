@@ -79,4 +79,9 @@
     <string name="cancel">取消</string>
     <string name="backup">备份模块设置</string>
     <string name="recovery">恢复模块设置</string>
+
+    <string name="eggs_tips">杂项区</string>
+    <string name="about_module">模块信息</string>
+    <string name="module_version">模块版本号</string>
+    <string name="module_build_time">模块构建时间</string>
 </resources>
