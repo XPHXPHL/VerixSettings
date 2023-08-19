@@ -1,5 +1,6 @@
 package com.xlp.verixsettings.ui
 
+import ShellUtils
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -17,16 +18,15 @@ import com.xlp.verixsettings.ui.pages.SystemUiPage
 import com.xlp.verixsettings.ui.pages.VibratorPage
 import com.xlp.verixsettings.utils.BackupUtils
 import com.xlp.verixsettings.utils.CheckedModel.checked
-import com.xlp.verixsettings.utils.checkRoot
 import kotlin.system.exitProcess
 
 
 class MainActivity : MIUIActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         checkLSPosed()
         checkedRoot()
         checkModel()
-        super.onCreate(savedInstanceState)
     }
 
     private fun checkModel(){
@@ -44,7 +44,7 @@ class MainActivity : MIUIActivity() {
     }
 
     private fun checkedRoot(){
-        val checkRootState = checkRoot()
+        val checkRootState = ShellUtils.checkRootPermission()
         if (!checkRootState){
             MIUIDialog(this) {
                 setTitle(R.string.tips)
