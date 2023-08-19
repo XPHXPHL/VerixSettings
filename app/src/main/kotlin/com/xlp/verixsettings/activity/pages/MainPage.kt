@@ -1,4 +1,4 @@
-package com.xlp.verixsettings.ui.pages
+package com.xlp.verixsettings.activity.pages
 
 import android.annotation.SuppressLint
 import android.content.ComponentName
@@ -34,7 +34,7 @@ import com.xlp.verixsettings.R.string.restart_scope_summary
 import com.xlp.verixsettings.R.string.settings
 import com.xlp.verixsettings.R.string.systemui
 import com.xlp.verixsettings.R.string.tips
-import com.xlp.verixsettings.ui.MainActivity
+import com.xlp.verixsettings.activity.MainActivity
 import com.xlp.verixsettings.utils.BackupUtils
 import com.xlp.verixsettings.utils.execShell
 

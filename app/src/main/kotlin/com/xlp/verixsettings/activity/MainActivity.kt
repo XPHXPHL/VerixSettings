@@ -1,4 +1,4 @@
-package com.xlp.verixsettings.ui
+package com.xlp.verixsettings.activity
 
 import ShellUtils
 import android.annotation.SuppressLint
@@ -9,13 +9,13 @@ import cn.fkj233.ui.dialog.MIUIDialog
 import com.xlp.verixsettings.R
 import com.xlp.verixsettings.R.string.not_support_device
 import com.xlp.verixsettings.R.string.not_support_root
-import com.xlp.verixsettings.ui.pages.AndroidPage
-import com.xlp.verixsettings.ui.pages.AppInstallPage
-import com.xlp.verixsettings.ui.pages.ChargePage
-import com.xlp.verixsettings.ui.pages.MainPage
-import com.xlp.verixsettings.ui.pages.SettingsPage
-import com.xlp.verixsettings.ui.pages.SystemUiPage
-import com.xlp.verixsettings.ui.pages.VibratorPage
+import com.xlp.verixsettings.activity.pages.AndroidPage
+import com.xlp.verixsettings.activity.pages.AppInstallPage
+import com.xlp.verixsettings.activity.pages.ChargePage
+import com.xlp.verixsettings.activity.pages.MainPage
+import com.xlp.verixsettings.activity.pages.SettingsPage
+import com.xlp.verixsettings.activity.pages.SystemUiPage
+import com.xlp.verixsettings.activity.pages.VibratorPage
 import com.xlp.verixsettings.utils.BackupUtils
 import com.xlp.verixsettings.utils.CheckedModel.checked
 import kotlin.system.exitProcess

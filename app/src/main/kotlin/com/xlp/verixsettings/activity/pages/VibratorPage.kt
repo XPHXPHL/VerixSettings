@@ -1,4 +1,4 @@
-package com.xlp.verixsettings.ui.pages
+package com.xlp.verixsettings.activity.pages
 
 import cn.fkj233.ui.activity.annotation.BMPage
 import cn.fkj233.ui.activity.data.BasePage
