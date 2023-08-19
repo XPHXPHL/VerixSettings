@@ -24,10 +24,10 @@ import kotlin.system.exitProcess
 
 class MainActivity : MIUIActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         checkLSPosed()
         checkedRoot()
         checkModel()
+        super.onCreate(savedInstanceState)
     }
 
     private fun checkModel(){
