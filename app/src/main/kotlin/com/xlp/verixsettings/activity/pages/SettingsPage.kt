@@ -4,6 +4,7 @@ import cn.fkj233.ui.activity.annotation.BMPage
 import cn.fkj233.ui.activity.data.BasePage
 import cn.fkj233.ui.activity.view.SwitchV
 import cn.fkj233.ui.activity.view.TextSummaryV
+import com.xlp.verixsettings.R.string.LTPO
 import com.xlp.verixsettings.R.string.cipher_disk_vibrator
 import com.xlp.verixsettings.R.string.cipher_disk_vibrator_summary
 import com.xlp.verixsettings.R.string.finger_unlock
@@ -25,6 +26,10 @@ class SettingsPage : BasePage() {
         TextSummaryWithSwitch(
             TextSummaryV(textId = finger_unlock, tipsId = finger_unlock_summary),
             SwitchV("finger_unlock")
+        )
+        TextSummaryWithSwitch(
+            TextSummaryV(textId = LTPO),
+            SwitchV("flyme_LTPO")
         )
     }
 }

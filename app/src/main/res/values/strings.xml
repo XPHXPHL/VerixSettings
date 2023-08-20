@@ -12,7 +12,6 @@
     <string name="about_ex3124">EX3124</string>
 
     <string name="systemui">系统界面</string>
-    <string name="settings">系统设置</string>
     <string name="app_install">应用包管理组件</string>
     <string name="Vibrator">系统震动</string>
     <string name="Charge">充电设定</string>
@@ -84,4 +83,7 @@
     <string name="about_module">模块信息</string>
     <string name="module_version">模块版本号</string>
     <string name="module_build_time">模块构建时间</string>
+
+    <string name="settings">系统设置</string>
+    <string name="LTPO">魅族20系列的刷新率面板样式</string>
 </resources>

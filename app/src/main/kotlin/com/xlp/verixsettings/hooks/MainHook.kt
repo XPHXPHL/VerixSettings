@@ -6,6 +6,7 @@ import com.xlp.verixsettings.hooks.modules.android.HookAndroid.gameFps
 import com.xlp.verixsettings.hooks.modules.packageinstaller.HookPackageInstaller.silentInstall
 import com.xlp.verixsettings.hooks.modules.packageinstaller.HookPackageInstaller.skipVirusCheckTime
 import com.xlp.verixsettings.hooks.modules.settings.HookSettings.cipherDiskVib
+import com.xlp.verixsettings.hooks.modules.settings.HookSettings.flymeLTPO
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.appShade
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.backVib
 import com.xlp.verixsettings.hooks.modules.systemui.HookSystemUi.batteryProtect
@@ -35,12 +36,12 @@ class MainHook : IXposedHookLoadPackage {
                 batteryProtect(lpparam)
                 appShade(lpparam)
                 clipboardEditor(lpparam)
-
             }
 
             "com.android.settings" -> {
                 if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hook Settings succeed!")
                 cipherDiskVib(lpparam)
+                flymeLTPO(lpparam)
             }
 
             "android" -> {
