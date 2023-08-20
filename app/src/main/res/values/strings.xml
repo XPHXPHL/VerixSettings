@@ -83,6 +83,12 @@
     <string name="about_module">模块信息</string>
     <string name="module_version">模块版本号</string>
     <string name="module_build_time">模块构建时间</string>
+    <string name="phone_state">关于手机状态</string>
+
+    <string name="battery_design">电池设计容量(毫安)</string>
+    <string name="battery_full">电池实际充满容量(毫安)</string>
+    <string name="kernel_version">内核版本</string>
+    <string name="soc_chip">处理器代号</string>
 
     <string name="settings">系统设置</string>
     <string name="LTPO">魅族20系列的刷新率面板样式</string>
