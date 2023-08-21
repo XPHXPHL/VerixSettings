@@ -81,7 +81,7 @@ class EggsPages : BasePage() {
         val kernelVersion = execShell("cat /proc/version")
         val socChip = execShell("cat /sys/devices/soc0/chip_name")
         val batteryHealth = batteryFull.toFloat() / batteryDesign.toFloat()
-        val formattedPercentage = String.format("%.2f%%", batteryHealth * 100)
+        val formatBatteryHealth = String.format("%.2f%%", batteryHealth * 100)
         TextSummary(
             textId = kernel_version, tips = kernelVersion
         )
@@ -95,7 +95,7 @@ class EggsPages : BasePage() {
             textId = R.string.battery_full, tips = batteryFull+"mAh(typ)"
         )
         TextSummary(
-            textId = battery_health, tips = formattedPercentage
+            textId = battery_health, tips = formatBatteryHealth
         )
     }
 }
