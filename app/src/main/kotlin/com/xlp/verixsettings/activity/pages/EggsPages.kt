@@ -20,7 +20,11 @@ import com.xlp.verixsettings.R.string.module_build_time
 import com.xlp.verixsettings.R.string.module_version
 import com.xlp.verixsettings.R.string.phone_state
 import com.xlp.verixsettings.R.string.soc_chip
-import com.xlp.verixsettings.utils.execShell
+import com.xlp.verixsettings.utils.Init.batteryDesign
+import com.xlp.verixsettings.utils.Init.batteryFull
+import com.xlp.verixsettings.utils.Init.formatBatteryHealth
+import com.xlp.verixsettings.utils.Init.kernelVersion
+import com.xlp.verixsettings.utils.Init.socChip
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -76,12 +80,6 @@ class EggsPages : BasePage() {
         TextSummary(textId = module_build_time, tips = buildTime)
         Line()
         TitleText(textId = phone_state)
-        val batteryDesign = execShell("cat /sys/class/power_supply/battery/charge_full_design | awk '{print int(\$1/1000)}'").trim()
-        val batteryFull = execShell("cat /sys/class/power_supply/battery/charge_full | awk '{print int(\$1/1000)}'").trim()
-        val kernelVersion = execShell("cat /proc/version")
-        val socChip = execShell("cat /sys/devices/soc0/chip_name")
-        val batteryHealth = batteryFull.toFloat() / batteryDesign.toFloat()
-        val formatBatteryHealth = String.format("%.2f%%", batteryHealth * 100)
         TextSummary(
             textId = kernel_version, tips = kernelVersion
         )
