@@ -85,6 +85,7 @@
     <string name="module_build_time">模块构建时间</string>
     <string name="phone_state">关于手机状态</string>
 
+    <string name="battery_health">电池健康</string>
     <string name="battery_design">电池设计容量</string>
     <string name="battery_full">电池实际充满容量</string>
     <string name="kernel_version">内核版本</string>

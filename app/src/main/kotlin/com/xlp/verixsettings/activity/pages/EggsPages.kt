@@ -13,6 +13,7 @@ import com.xlp.verixsettings.R.drawable.about_xph
 import com.xlp.verixsettings.R.drawable.about_yukonga
 import com.xlp.verixsettings.R.string.about_module
 import com.xlp.verixsettings.R.string.about_us
+import com.xlp.verixsettings.R.string.battery_health
 import com.xlp.verixsettings.R.string.eggs_tips
 import com.xlp.verixsettings.R.string.kernel_version
 import com.xlp.verixsettings.R.string.module_build_time
@@ -75,10 +76,12 @@ class EggsPages : BasePage() {
         TextSummary(textId = module_build_time, tips = buildTime)
         Line()
         TitleText(textId = phone_state)
-        val batteryDesign = execShell("cat /sys/class/power_supply/battery/charge_full_design | awk '{print int(\$1/1000)}'")
-        val batteryFull = execShell("cat /sys/class/power_supply/battery/charge_full | awk '{print int(\$1/1000)}'")
+        val batteryDesign = execShell("cat /sys/class/power_supply/battery/charge_full_design | awk '{print int(\$1/1000)}'").trim()
+        val batteryFull = execShell("cat /sys/class/power_supply/battery/charge_full | awk '{print int(\$1/1000)}'").trim()
         val kernelVersion = execShell("cat /proc/version")
         val socChip = execShell("cat /sys/devices/soc0/chip_name")
+        val batteryHealth = batteryFull.toFloat() / batteryDesign.toFloat()
+        val formattedPercentage = String.format("%.2f%%", batteryHealth * 100)
         TextSummary(
             textId = kernel_version, tips = kernelVersion
         )
@@ -90,6 +93,9 @@ class EggsPages : BasePage() {
         )
         TextSummary(
             textId = R.string.battery_full, tips = batteryFull
+        )
+        TextSummary(
+            textId = battery_health, tips = formattedPercentage
         )
     }
 }
