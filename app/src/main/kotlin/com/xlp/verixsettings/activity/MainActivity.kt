@@ -1,6 +1,5 @@
 package com.xlp.verixsettings.activity
 
-import ShellUtils
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -19,6 +18,7 @@ import com.xlp.verixsettings.activity.pages.SystemUiPage
 import com.xlp.verixsettings.activity.pages.VibratorPage
 import com.xlp.verixsettings.utils.BackupUtils
 import com.xlp.verixsettings.utils.CheckedModel.checked
+import com.xlp.verixsettings.utils.ShellUtils
 import kotlin.system.exitProcess
 
 
