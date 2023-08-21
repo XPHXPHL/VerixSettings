@@ -89,10 +89,10 @@ class EggsPages : BasePage() {
             textId = soc_chip, tips = socChip
         )
         TextSummary(
-            textId = R.string.battery_design, tips = batteryDesign
+            textId = R.string.battery_design, tips = batteryDesign+"mAh(typ)"
         )
         TextSummary(
-            textId = R.string.battery_full, tips = batteryFull
+            textId = R.string.battery_full, tips = batteryFull+"mAh(typ)"
         )
         TextSummary(
             textId = battery_health, tips = formattedPercentage
