@@ -18,6 +18,7 @@ import com.xlp.verixsettings.R.string.eggs_tips
 import com.xlp.verixsettings.R.string.kernel_version
 import com.xlp.verixsettings.R.string.module_build_time
 import com.xlp.verixsettings.R.string.module_version
+import com.xlp.verixsettings.R.string.module_version_r
 import com.xlp.verixsettings.R.string.phone_state
 import com.xlp.verixsettings.R.string.soc_chip
 import com.xlp.verixsettings.utils.Init.batteryDesign
@@ -78,6 +79,11 @@ class EggsPages : BasePage() {
         TextSummary(textId = module_version, tips = "${BuildConfig.VERSION_NAME}-${BuildConfig.BUILD_TYPE}")
         val buildTime = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(BuildConfig.BUILD_TIME)
         TextSummary(textId = module_build_time, tips = buildTime)
+        TextSummary(textId = module_version_r , tips =
+                "*B-代表测试版。\n" +
+                "*L-代表X.X版本的最后一版测试。\n" +
+                "*R-代表从X.X版本开始就有大改变(如Ui改变)但是这个版本号只会用1-3个版本然后就取消。\n" +
+                "*无后缀-正常在正常不过的版本")
         Line()
         TitleText(textId = phone_state)
         TextSummary(

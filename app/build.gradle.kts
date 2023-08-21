@@ -16,7 +16,7 @@ android {
         minSdk = 33
         targetSdk = 33
         versionCode = 114514
-        versionName = "1.7R"
+        versionName = "1.7"
         buildConfigField("long", "BUILD_TIME", "$buildTime")
         vectorDrawables {
             useSupportLibrary = true
