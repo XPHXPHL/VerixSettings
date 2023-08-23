@@ -23,8 +23,10 @@ import com.xlp.verixsettings.R.string.phone_state
 import com.xlp.verixsettings.R.string.soc_chip
 import com.xlp.verixsettings.utils.Init.batteryDesign
 import com.xlp.verixsettings.utils.Init.batteryFull
+import com.xlp.verixsettings.utils.Init.cameraParameter
 import com.xlp.verixsettings.utils.Init.formatBatteryHealth
 import com.xlp.verixsettings.utils.Init.kernelVersion
+import com.xlp.verixsettings.utils.Init.romVersion
 import com.xlp.verixsettings.utils.Init.socChip
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -76,27 +78,41 @@ class EggsPages : BasePage() {
         )
         Line()
         TitleText(textId = about_module)
-        TextSummary(textId = module_version, tips = "${BuildConfig.VERSION_NAME}-${BuildConfig.BUILD_TYPE}")
-        val buildTime = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(BuildConfig.BUILD_TIME)
+        TextSummary(
+            textId = module_version,
+            tips = "${BuildConfig.VERSION_NAME}-${BuildConfig.BUILD_TYPE}"
+        )
+        val buildTime =
+            SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(BuildConfig.BUILD_TIME)
         TextSummary(textId = module_build_time, tips = buildTime)
-        TextSummary(textId = module_version_r , tips =
-                "*B-代表测试版。\n" +
-                "*L-代表X.X版本的最后一版测试。\n" +
-                "*R-代表从X.X版本开始就有大改变(如Ui改变)但是这个版本号只会用1-3个版本然后就取消。\n" +
-                "*无后缀-正常在正常不过的版本")
+        TextSummary(
+            textId = module_version_r, tips =
+            "*B-代表测试版。\n" +
+                    "*L-代表X.X版本的最后一版测试。\n" +
+                    "*R-代表从X.X版本开始就有大改变(如Ui改变)但是这个版本号只会用1-3个版本然后就取消。\n" +
+                    "*无后缀-正常在正常不过的版本"
+        )
         Line()
         TitleText(textId = phone_state)
         TextSummary(
             textId = kernel_version, tips = kernelVersion
         )
+        if (romVersion != "") TextSummary(
+            textId = R.string.rom_version,
+            tips = romVersion
+        )
+        if (cameraParameter != "") TextSummary(
+            textId = R.string.camera_parameter,
+            tips = cameraParameter
+        )
         TextSummary(
             textId = soc_chip, tips = socChip
         )
         TextSummary(
-            textId = R.string.battery_design, tips = batteryDesign+"mAh(typ)"
+            textId = R.string.battery_design, tips = batteryDesign + "mAh(typ)"
         )
         TextSummary(
-            textId = R.string.battery_full, tips = batteryFull+"mAh(typ)"
+            textId = R.string.battery_full, tips = batteryFull + "mAh(typ)"
         )
         TextSummary(
             textId = battery_health, tips = formatBatteryHealth
