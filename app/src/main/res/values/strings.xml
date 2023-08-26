@@ -89,7 +89,7 @@
     <string name="battery_design">电池设计容量</string>
     <string name="battery_full">电池实际充满容量</string>
     <string name="kernel_version">内核版本</string>
-    <string name="soc_chip">处理器代号</string>
+    <string name="soc_chip">处理器型号</string>
     <string name="rom_version">Rom版本</string>
     <string name="camera_parameter">相机参数</string>
 

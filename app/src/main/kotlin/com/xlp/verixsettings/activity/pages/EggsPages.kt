@@ -25,9 +25,9 @@ import com.xlp.verixsettings.utils.Init.batteryDesign
 import com.xlp.verixsettings.utils.Init.batteryFull
 import com.xlp.verixsettings.utils.Init.cameraParameter
 import com.xlp.verixsettings.utils.Init.formatBatteryHealth
+import com.xlp.verixsettings.utils.Init.formatSocChip
 import com.xlp.verixsettings.utils.Init.kernelVersion
 import com.xlp.verixsettings.utils.Init.romVersion
-import com.xlp.verixsettings.utils.Init.socChip
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -106,7 +106,7 @@ class EggsPages : BasePage() {
             tips = cameraParameter
         )
         TextSummary(
-            textId = soc_chip, tips = socChip
+            textId = soc_chip, tips = formatSocChip
         )
         TextSummary(
             textId = R.string.battery_design, tips = batteryDesign + "mAh(typ)"
