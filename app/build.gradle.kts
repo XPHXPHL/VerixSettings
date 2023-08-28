@@ -71,7 +71,6 @@ kotlin {
 dependencies {
     compileOnly(libs.xposed.api)
     implementation(libs.core.ktx)
-    implementation("com.github.kyuubiran:EzXHelper:2.0.6")
     implementation(project("::blockmiui"))
 }
 
