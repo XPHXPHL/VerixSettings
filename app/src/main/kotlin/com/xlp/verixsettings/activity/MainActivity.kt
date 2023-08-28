@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import cn.fkj233.ui.activity.MIUIActivity
 import cn.fkj233.ui.dialog.MIUIDialog
-import com.xlp.verixsettings.BuildConfig
 import com.xlp.verixsettings.R
 import com.xlp.verixsettings.R.string.not_support_device
 import com.xlp.verixsettings.R.string.not_support_root
@@ -25,11 +24,9 @@ import kotlin.system.exitProcess
 
 class MainActivity : MIUIActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        if(!BuildConfig.DEBUG){
         checkLSPosed()
         checkedRoot()
         checkModel()
-        }
         super.onCreate(savedInstanceState)
     }
 
