@@ -22,7 +22,7 @@ object CheckedModel {
             //Other
             "picasso" -> return true
             "phoenix" -> return true
-
+            "marble" -> return true
         }
         when (meizuModel.lowercase(Locale.ROOT)) {
             "meizu" -> return true
