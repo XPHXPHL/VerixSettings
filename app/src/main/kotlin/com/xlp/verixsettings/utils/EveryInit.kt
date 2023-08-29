@@ -7,7 +7,7 @@ object Init {
         execShell("cat /sys/class/power_supply/battery/charge_full_design | awk '{print int(\$1/1000)}'").trim()
     val batteryFull =
         execShell("cat /sys/class/power_supply/battery/charge_full | awk '{print int(\$1/1000)}'").trim()
-    val kernelVersion = execShell("cat /proc/version")
+    val kernelVersion = execShell("cat /proc/version").trim()
     private val socChip = execShell("cat /sys/devices/soc0/chip_name").trim()
     val formatSocChip = formatSocName(socChip)
     private val batteryHealth = batteryFull.toFloat() / batteryDesign.toFloat()
