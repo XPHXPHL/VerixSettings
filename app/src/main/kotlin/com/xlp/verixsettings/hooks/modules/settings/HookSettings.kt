@@ -53,7 +53,7 @@ object HookSettings {
                         override fun beforeHookedMethod(param: MethodHookParam) {
                             super.beforeHookedMethod(param)
                             val str = "M2391"
-                            param.args[0] = str
+                            param.result = str
                         }
                         override fun afterHookedMethod(param: MethodHookParam) {
                             super.afterHookedMethod(param)
