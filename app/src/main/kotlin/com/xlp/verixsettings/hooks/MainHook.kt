@@ -3,6 +3,8 @@ package com.xlp.verixsettings.hooks
 import com.xlp.verixsettings.BuildConfig
 import com.xlp.verixsettings.hooks.modules.android.HookAndroid.forcedScreenCapture
 import com.xlp.verixsettings.hooks.modules.android.HookAndroid.gameFps
+import com.xlp.verixsettings.hooks.modules.android.HookAndroid.vibratorImpair
+import com.xlp.verixsettings.hooks.modules.android.HookAndroid.vibratorStrengthen
 import com.xlp.verixsettings.hooks.modules.packageinstaller.HookPackageInstaller.silentInstall
 import com.xlp.verixsettings.hooks.modules.packageinstaller.HookPackageInstaller.skipVirusCheckTime
 import com.xlp.verixsettings.hooks.modules.settings.HookSettings.cipherDiskVib
@@ -48,6 +50,8 @@ class MainHook : IXposedHookLoadPackage {
                 if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hook android succeed!")
                 gameFps(lpparam)
                 forcedScreenCapture(lpparam)
+                vibratorStrengthen(lpparam)
+                vibratorImpair(lpparam)
             }
 
             "com.flyme.systemuiex" -> {

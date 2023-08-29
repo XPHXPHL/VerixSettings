@@ -3,6 +3,7 @@ package com.xlp.verixsettings.hooks.modules.android
 import com.xlp.verixsettings.BuildConfig
 import com.xlp.verixsettings.utils.Init.TAG
 import com.xlp.verixsettings.utils.getBoolean
+import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XC_MethodReplacement
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
@@ -11,7 +12,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 
 object HookAndroid {
     fun forcedScreenCapture(lpparam: LoadPackageParam) {
-        if (getBoolean("forced_screen_capture",false)) {
+        if (getBoolean("forced_screen_capture", false)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::forcedScreenCapture")
             XposedHelpers.findAndHookMethod(
                 "com.android.server.wm.WindowState",
@@ -23,13 +24,48 @@ object HookAndroid {
     }
 
     fun gameFps(lpparam: LoadPackageParam) {
-        if (getBoolean("game_fps",false)) {
+        if (getBoolean("game_fps", false)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::gameFps")
             XposedHelpers.findAndHookMethod(
                 "com.android.server.wm.WindowState",
                 lpparam.classLoader,
                 "isFocused",
                 XC_MethodReplacement.returnConstant(false)
+            )
+        }
+    }
+
+    fun vibratorStrengthen(lpparam: LoadPackageParam) {
+        if (getBoolean("vibrator_strengthen", false)) {
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::vibratorStrengthen")
+            XposedHelpers.findAndHookMethod(
+                "com.android.server.vibrator.VibratorController",
+                lpparam.classLoader,
+                "checkNeedUseQcomEffectId",
+                Int::class.java,
+                object : XC_MethodHook() {
+                    override fun afterHookedMethod(param: MethodHookParam) {
+                        super.afterHookedMethod(param)
+                        param.result = 1
+                    }
+                }
+            )
+        }
+    }
+    fun vibratorImpair(lpparam: LoadPackageParam) {
+        if (getBoolean("vibrator_impair", false)) {
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::vibratorStrengthen")
+            XposedHelpers.findAndHookMethod(
+                "com.android.server.vibrator.VibratorController",
+                lpparam.classLoader,
+                "checkNeedUseQcomEffectId",
+                Int::class.java,
+                object : XC_MethodHook() {
+                    override fun afterHookedMethod(param: MethodHookParam) {
+                        super.afterHookedMethod(param)
+                        param.result = 4
+                    }
+                }
             )
         }
     }
