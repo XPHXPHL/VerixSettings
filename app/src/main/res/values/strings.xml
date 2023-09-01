@@ -1,75 +1,54 @@
 <resources>
     <string name="app_name">VerixSettings</string>
     <string name="description">Flyme 高级设置</string>
-
     <string name="blur_enabled">通知模糊</string>
     <string name="blur_enabled_summary">为非魅族20/20Pro用户恢复被阉割掉通知中心模糊。</string>
-
     <string name="about_us">关于我们</string>
     <string name="about_xph">XiaoPoHai(XPH)</string>
     <string name="about_yukonga">YuKongA</string>
     <string name="about_creamdraft">CreamDraft</string>
     <string name="about_ex3124">EX3124</string>
-
     <string name="systemui">系统界面</string>
     <string name="app_install">应用包管理组件</string>
     <string name="Vibrator">系统震动</string>
     <string name="Charge">充电设定</string>
-
     <string name="app_shade">软件启动遮罩</string>
     <string name="app_shade_summary">还原原生开启应用的遮罩功能—来自Ex3124。</string>
-
     <string name="forced_screen_capture">强制截图</string>
     <string name="forced_screen_capture_summary">使某些场景允许进行截屏操作—来自Ex3124。</string>
-
     <string name="clipboard_editor">剪贴板编辑器</string>
     <string name="clipboard_editor_summary">还原原生的剪切板编辑器—来自Ex3124。</string>
-
     <string name="game_fps">游戏锁帧</string>
     <string name="game_fps_summary">强制游戏锁帧以此来增加游戏时续航时间—来自Ex3124。</string>
-
     <string name="back_vibrator">返回震动</string>
     <string name="back_vibrator_summary">执行返回手势触发线性震动反馈。</string>
-
     <string name="face_vibrator">人脸解锁成功震动</string>
     <string name="face_vibrator_summary">人脸解锁成功时触发线性震动反馈。</string>
-
     <string name="finger_vibrator">指纹解锁成功震动</string>
     <string name="finger_vibrator_summary">指纹解锁成功时触发线性震动反馈。</string>
-
     <string name="cipher_disk_vibrator">魅族密码盘震动</string>
     <string name="cipher_disk_vibrator_summary">为魅族设置密码盘启用震动效果。</string>
-
     <string name="finger_unlock">按压指纹按键解锁</string>
     <string name="finger_unlock_summary">类似于MIUI按压指纹按键才能进行解锁。</string>
-
     <string name="hs_power">H.S.电量控制（旁路充电）</string>
     <string name="hs_power_summary">可限制由于充电过程中设备过热导致的性能降低和电池降级，电量会直接供给手机系统，而不是给电池充电。这样可减少热应力，有助于保持游戏性能和延长电池的寿命。</string>
-
     <string name="battery_protect">电池保养</string>
     <string name="battery_protect_summary">阻止设备充电至90%以上电量，延长电池充放电循环的时间以延长电池寿命。</string>
-
     <string name="clock_seconds">时间显秒</string>
     <string name="clock_seconds_summary">为状态栏时间开启HH::MM::SS显示样式。</string>
-
     <string name="hide_icon">隐藏桌面图标</string>
-
     <string name="silent_install">静默安装</string>
     <string name="silent_install_summary">跳过点击安装才能安装软件—来自Mr.Monxing。</string>
-
     <string name="skip_virus_check_time">跳过病毒检测功能</string>
     <string name="skip_virus_check_time_summary">去除烦人的病毒检测功能(请慎重开启)。</string>
-
     <string name="android">系统框架</string>
     <string name="need_reboot">本页功能开启以后需要重启手机</string>
-
     <string name="tips">提示</string>
     <string name="not_support">模块未激活，请激活模块后重试</string>
     <string name="not_support_root">模块未获取到Root权限，请在Magisk中给予本模块Root权限</string>
     <string name="not_support_device">你的机型尚未适配哦请联系开发者进行适配哦！</string>
     <string name="hide_desktop_icon">隐藏桌面图标</string>
     <string name="done">确定</string>
-
     <string name="reboot_system">重启系统</string>
     <string name="reboot_system_summary">确定要重启系统么？</string>
     <string name="restart_scope">重启作用域</string>
@@ -78,7 +57,6 @@
     <string name="cancel">取消</string>
     <string name="backup">备份模块设置</string>
     <string name="recovery">恢复模块设置</string>
-
     <string name="eggs_tips">杂项区</string>
     <string name="about_module">模块信息</string>
     <string name="module_version">模块版本号</string>
@@ -92,7 +70,11 @@
     <string name="soc_chip">处理器型号</string>
     <string name="rom_version">Rom版本</string>
     <string name="camera_parameter">相机参数</string>
-
     <string name="settings">系统设置</string>
     <string name="LTPO">魅族20系列的刷新率面板样式</string>
+    <string name="vibrator">自定义震动ID值</string>
+    <string name="vibrator_summary">用模块的方式来自定义震动ID的大小来修改震动的大小</string>
+    <string name="def">默认值</string>
+    <string name="range">范围</string>
+    <string name="current">当前值</string>
 </resources>

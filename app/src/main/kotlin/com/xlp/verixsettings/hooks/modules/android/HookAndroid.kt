@@ -3,6 +3,7 @@ package com.xlp.verixsettings.hooks.modules.android
 import com.xlp.verixsettings.BuildConfig
 import com.xlp.verixsettings.utils.Init.TAG
 import com.xlp.verixsettings.utils.getBoolean
+import com.xlp.verixsettings.utils.getInt
 import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XC_MethodReplacement
 import de.robv.android.xposed.XposedBridge
@@ -52,6 +53,7 @@ object HookAndroid {
             )
         }
     }
+
     fun vibratorImpair(lpparam: LoadPackageParam) {
         if (getBoolean("vibrator_impair", false)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::vibratorStrengthen")
@@ -68,5 +70,21 @@ object HookAndroid {
                 }
             )
         }
+    }
+    fun vibrator(lpparam: LoadPackageParam) {
+        val value = getInt("vibrator",1)
+        if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::vibrator")
+        XposedHelpers.findAndHookMethod(
+            "com.android.server.vibrator.VibratorController",
+            lpparam.classLoader,
+            "checkNeedUseQcomEffectId",
+            Int::class.java,
+            object : XC_MethodHook() {
+                override fun afterHookedMethod(param: MethodHookParam) {
+                    super.afterHookedMethod(param)
+                    param.result = value
+                }
+            }
+        )
     }
 }
