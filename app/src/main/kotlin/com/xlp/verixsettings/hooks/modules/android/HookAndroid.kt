@@ -23,7 +23,6 @@ object HookAndroid {
             )
         }
     }
-
     fun gameFps(lpparam: LoadPackageParam) {
         if (getBoolean("game_fps", false)) {
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::gameFps")
@@ -35,7 +34,6 @@ object HookAndroid {
             )
         }
     }
-
     fun vibrator(lpparam: LoadPackageParam) {
         val value = getInt("vibrator",1)
         if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::vibrator")

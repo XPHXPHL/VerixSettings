@@ -77,4 +77,5 @@
     <string name="def">默认值</string>
     <string name="range">范围</string>
     <string name="current">当前值</string>
+    <string name="warn">输入有误请重新输入,已经恢复默认值</string>
 </resources>

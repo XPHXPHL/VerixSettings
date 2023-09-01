@@ -1,5 +1,6 @@
 package com.xlp.verixsettings.activity.pages
 
+import android.widget.Toast
 import cn.fkj233.ui.activity.MIUIActivity.Companion.safeSP
 import cn.fkj233.ui.activity.annotation.BMPage
 import cn.fkj233.ui.activity.data.BasePage
@@ -51,11 +52,23 @@ class VibratorPage : BasePage() {
                             dismiss()
                         }
                         setRButton(textId = R.string.done) {
-                            if (getEditText() != "") {
-                                safeSP.putAny(
-                                    "vibrator",
-                                    getEditText().toInt()
-                                )
+                            try {
+                                if (getEditText().toInt() in 0..20) {
+                                    safeSP.putAny(
+                                        "vibrator",
+                                        getEditText().toInt()
+                                    )
+                                } else {
+                                    safeSP.putAny(
+                                        "vibrator",
+                                        0
+                                    )
+                                    Toast.makeText(activity, R.string.warn, Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                            } catch (e: NumberFormatException) {
+                                Toast.makeText(activity, R.string.warn, Toast.LENGTH_SHORT)
+                                    .show()
                             }
                             dismiss()
                         }
