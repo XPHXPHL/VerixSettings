@@ -73,7 +73,7 @@
     <string name="settings">系统设置</string>
     <string name="LTPO">魅族20系列的刷新率面板样式</string>
     <string name="vibrator">自定义震动ID值</string>
-    <string name="vibrator_summary">用模块的方式来自定义震动ID的大小来修改震动的大小</string>
+    <string name="vibrator_summary">用模块的方式来自定义震动ID的大小来修改震动的大小,此功能需要重启手机!!!!!</string>
     <string name="def">默认值</string>
     <string name="range">范围</string>
     <string name="current">当前值</string>
