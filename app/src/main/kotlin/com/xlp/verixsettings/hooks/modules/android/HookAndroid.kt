@@ -37,7 +37,7 @@ object HookAndroid {
     }
     fun vibrator(lpparam: LoadPackageParam) {
         if (model == "marble") {
-            val value = getInt("vibrator", 1)
+            val value = getInt("vibrator", 0)
             if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::vibrator")
             XposedHelpers.findAndHookMethod(
                 "com.android.server.vibrator.VibratorController",
