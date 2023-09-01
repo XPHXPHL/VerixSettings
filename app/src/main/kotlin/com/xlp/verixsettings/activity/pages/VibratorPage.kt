@@ -34,14 +34,6 @@ class VibratorPage : BasePage() {
             TextSummaryV(textId = finger_vibrator, tipsId = finger_vibrator_summary),
             SwitchV("finger_vibrator")
         )
-        TextSummaryWithSwitch(
-            TextSummaryV(text = "震动振强", tipsId = finger_vibrator_summary),
-            SwitchV("vibrator_strengthen")
-        )
-        TextSummaryWithSwitch(
-            TextSummaryV(text = "震动削弱", tipsId = finger_vibrator_summary),
-            SwitchV("vibrator_impair")
-        )
         TextSummaryWithArrow(
             TextSummaryV(
                 textId = R.string.vibrator,

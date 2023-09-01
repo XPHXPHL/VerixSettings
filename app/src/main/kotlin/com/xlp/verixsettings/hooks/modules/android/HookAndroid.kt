@@ -36,41 +36,6 @@ object HookAndroid {
         }
     }
 
-    fun vibratorStrengthen(lpparam: LoadPackageParam) {
-        if (getBoolean("vibrator_strengthen", false)) {
-            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::vibratorStrengthen")
-            XposedHelpers.findAndHookMethod(
-                "com.android.server.vibrator.VibratorController",
-                lpparam.classLoader,
-                "checkNeedUseQcomEffectId",
-                Int::class.java,
-                object : XC_MethodHook() {
-                    override fun afterHookedMethod(param: MethodHookParam) {
-                        super.afterHookedMethod(param)
-                        param.result = 1
-                    }
-                }
-            )
-        }
-    }
-
-    fun vibratorImpair(lpparam: LoadPackageParam) {
-        if (getBoolean("vibrator_impair", false)) {
-            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::vibratorStrengthen")
-            XposedHelpers.findAndHookMethod(
-                "com.android.server.vibrator.VibratorController",
-                lpparam.classLoader,
-                "checkNeedUseQcomEffectId",
-                Int::class.java,
-                object : XC_MethodHook() {
-                    override fun afterHookedMethod(param: MethodHookParam) {
-                        super.afterHookedMethod(param)
-                        param.result = 4
-                    }
-                }
-            )
-        }
-    }
     fun vibrator(lpparam: LoadPackageParam) {
         val value = getInt("vibrator",1)
         if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::vibrator")
