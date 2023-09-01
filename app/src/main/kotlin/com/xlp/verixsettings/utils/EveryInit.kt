@@ -14,4 +14,5 @@ object Init {
     val formatBatteryHealth = String.format("%.2f%%", batteryHealth * 100)
     val romVersion = getProp("ro.xlp.rom.version.helper")
     val cameraParameter = getProp("ro.xlp.rom.camera.helper")
+    val model = execShell("getprop ro.vendor.xlp.rom.helper.device").trim()
 }

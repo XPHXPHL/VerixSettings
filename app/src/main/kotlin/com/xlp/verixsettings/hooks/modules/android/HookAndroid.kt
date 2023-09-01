@@ -2,6 +2,7 @@ package com.xlp.verixsettings.hooks.modules.android
 
 import com.xlp.verixsettings.BuildConfig
 import com.xlp.verixsettings.utils.Init.TAG
+import com.xlp.verixsettings.utils.Init.model
 import com.xlp.verixsettings.utils.getBoolean
 import com.xlp.verixsettings.utils.getInt
 import de.robv.android.xposed.XC_MethodHook
@@ -35,19 +36,21 @@ object HookAndroid {
         }
     }
     fun vibrator(lpparam: LoadPackageParam) {
-        val value = getInt("vibrator",1)
-        if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::vibrator")
-        XposedHelpers.findAndHookMethod(
-            "com.android.server.vibrator.VibratorController",
-            lpparam.classLoader,
-            "checkNeedUseQcomEffectId",
-            Int::class.java,
-            object : XC_MethodHook() {
-                override fun afterHookedMethod(param: MethodHookParam) {
-                    super.afterHookedMethod(param)
-                    param.result = value
+        if (model == "marble") {
+            val value = getInt("vibrator", 1)
+            if (BuildConfig.DEBUG) XposedBridge.log("$TAG: Hooking HookAndroid::vibrator")
+            XposedHelpers.findAndHookMethod(
+                "com.android.server.vibrator.VibratorController",
+                lpparam.classLoader,
+                "checkNeedUseQcomEffectId",
+                Int::class.java,
+                object : XC_MethodHook() {
+                    override fun afterHookedMethod(param: MethodHookParam) {
+                        super.afterHookedMethod(param)
+                        param.result = value
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 }

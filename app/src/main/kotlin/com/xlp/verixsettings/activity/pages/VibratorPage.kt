@@ -15,6 +15,7 @@ import com.xlp.verixsettings.R.string.face_vibrator
 import com.xlp.verixsettings.R.string.face_vibrator_summary
 import com.xlp.verixsettings.R.string.finger_vibrator
 import com.xlp.verixsettings.R.string.finger_vibrator_summary
+import com.xlp.verixsettings.utils.Init.model
 
 @BMPage("VibratorPage", hideMenu = false)
 class VibratorPage : BasePage() {
@@ -35,6 +36,7 @@ class VibratorPage : BasePage() {
             TextSummaryV(textId = finger_vibrator, tipsId = finger_vibrator_summary),
             SwitchV("finger_vibrator")
         )
+        if (model == "marble"){
         TextSummaryWithArrow(
             TextSummaryV(
                 textId = R.string.vibrator,
@@ -74,6 +76,6 @@ class VibratorPage : BasePage() {
                         }
                     }.show()
                 })
-        )
+        )}
     }
 }
