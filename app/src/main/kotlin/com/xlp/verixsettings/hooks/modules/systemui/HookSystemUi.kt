@@ -166,14 +166,14 @@ object HookSystemUi {
                         super.beforeHookedMethod(param)
                         val level = param?.args?.get(0) as Int
                         val pluggedIn = param.args?.get(1) as Boolean
-                        if (pluggedIn && level >= 91) {
+                        if (pluggedIn && level >= 90) {
                             writeFileNode(
-                                "/sys/class/power_supply/battery/battery_charging_enabled",
+                                "/sys/class/qcom-battery/night_charging",
                                 "0"
                             )
                         } else {
                             writeFileNode(
-                                "/sys/class/power_supply/battery/battery_charging_enabled",
+                                "/sys/class/qcom-battery/night_charging",
                                 "1"
                             )
                         }

@@ -27,9 +27,9 @@ class ChargePage : BasePage() {
             TextSummaryV(textId = hs_power, tipsId = hs_power_summary),
             SwitchV("hs_power", onClickListener = {
                 if (it) {
-                    execShell("echo 0 > /sys/class/power_supply/battery/battery_charging_enabled")
+                    execShell("echo 0 > /sys/class/qcom-battery/input_suspend")
                 } else {
-                    execShell("echo 1 > /sys/class/power_supply/battery/battery_charging_enabled")
+                    execShell("echo 1 > /sys/class/qcom-battery/input_suspend")
                 }
             })
         )
