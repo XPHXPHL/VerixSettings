@@ -23,6 +23,7 @@ class VibratorPage : BasePage() {
         setTitle(getString(Vibrator))
         return getString(Vibrator)
     }
+
     override fun onCreate() {
         TextSummaryWithSwitch(
             TextSummaryV(textId = back_vibrator, tipsId = back_vibrator_summary),
@@ -36,46 +37,40 @@ class VibratorPage : BasePage() {
             TextSummaryV(textId = finger_vibrator, tipsId = finger_vibrator_summary),
             SwitchV("finger_vibrator")
         )
-        if (model == "marble"){
-        TextSummaryWithArrow(
-            TextSummaryV(
-                textId = R.string.vibrator,
-                tipsId = R.string.vibrator_summary,
-                onClickListener = {
-                    MIUIDialog(activity) {
-                        setTitle(R.string.vibrator)
-                        setMessage(
-                            "${activity.getString(R.string.def)}0，${activity.getString(R.string.current)}${
-                                safeSP.getInt("vibrator", 0)
-                            }"
-                        )
-                        setEditText("", "${activity.getString(R.string.range)}0-20")
-                        setLButton(textId = R.string.cancel) {
-                            dismiss()
-                        }
-                        setRButton(textId = R.string.done) {
-                            try {
-                                if (getEditText().toInt() in 0..20) {
-                                    safeSP.putAny(
-                                        "vibrator",
-                                        getEditText().toInt()
-                                    )
-                                } else {
-                                    safeSP.putAny(
-                                        "vibrator",
-                                        0
-                                    )
-                                    Toast.makeText(activity, R.string.warn, Toast.LENGTH_SHORT)
-                                        .show()
+        if (model == "marble") {
+            TextSummaryWithArrow(
+                TextSummaryV(
+                    textId = R.string.vibrator,
+                    tipsId = R.string.vibrator_summary,
+                    onClickListener = {
+                        MIUIDialog(activity) {
+                            setTitle(R.string.vibrator)
+                            setMessage(
+                                "${activity.getString(R.string.def)}0，${activity.getString(R.string.current)}${
+                                    safeSP.getInt("vibrator", 0)
+                                }"
+                            )
+                            setEditText("", "${activity.getString(R.string.range)}0-20")
+                            setLButton(textId = R.string.cancel) {
+                                dismiss()
+                            }
+                            setRButton(textId = R.string.done) {
+                                if (getEditText().isNotEmpty()) {
+                                    runCatching {
+                                        safeSP.putAny(
+                                            "vibrator",
+                                            getEditText().toInt()
+                                        )
+                                    }.onFailure {
+                                        Toast.makeText(activity, R.string.warn, Toast.LENGTH_SHORT)
+                                            .show()
+                                    }
                                 }
-                            } catch (e: NumberFormatException) {
-                                Toast.makeText(activity, R.string.warn, Toast.LENGTH_SHORT)
-                                    .show()
                             }
                             dismiss()
-                        }
-                    }.show()
-                })
-        )}
+                        }.show()
+                    })
+            )
+        }
     }
 }
